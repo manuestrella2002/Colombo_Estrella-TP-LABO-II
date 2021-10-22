@@ -87,6 +87,7 @@ namespace Colombo_Estrella_TP_LABO_II
                             MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[i, j], Lista_Piezas.ElementAt(pos));
                             Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(pos));
                             Lista_Piezas.RemoveAt(pos);
+                    
                             MiTablero.ImprimirTablero();
                         if (contador != 0)
                         {
