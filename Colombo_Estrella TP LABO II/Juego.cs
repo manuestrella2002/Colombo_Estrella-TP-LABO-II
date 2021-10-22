@@ -83,6 +83,7 @@ namespace Colombo_Estrella_TP_LABO_II
                             MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[i, j], Lista_Piezas.ElementAt(pos));
                             Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(pos));
                             Lista_Piezas.RemoveAt(pos);
+                    
                             MiTablero.ImprimirTablero();
                         
                     }
@@ -107,6 +108,7 @@ namespace Colombo_Estrella_TP_LABO_II
                     //MiTablero.ImprimirTablero();
                     if (Lista_Piezas_Sacadas.Count()==0)
                     {
+        
                         break;
                     }
                     Lista_Piezas.AddRange(Lista_Piezas_Sacadas.GetRange(Lista_Piezas_Sacadas.Count() - i, i));
@@ -159,7 +161,7 @@ namespace Colombo_Estrella_TP_LABO_II
                     }
                 }
             }
-            if (contador == 64)
+            if (contador == 64 || contador == 63) //tambien se podia ocupar 63 como en la mayoria de las soluciones encontradas 
             {
                 return true;
             }

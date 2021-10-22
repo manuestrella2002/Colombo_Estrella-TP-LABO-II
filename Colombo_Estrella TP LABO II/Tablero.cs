@@ -30,7 +30,6 @@ namespace Colombo_Estrella_TP_LABO_II
                 }
             }
         }
-        //Probablemente  hay que cambiar "string chessPiece" por Pieza1 de tipo Pieza
 
         //FUNCION PARA MARCAR DE ACUERDO A LA PIEZA QUE SE LE PASA LAS POSICIONES A LAS QUE ATACA
         public void MarcarProx_MovLegal(Celda CeldaActual, string PiezaAjedrez)
@@ -57,6 +56,7 @@ namespace Colombo_Estrella_TP_LABO_II
                 case "Caballo2":
                     Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza = "Caballo";
                     break;
+         
                 case "Torre1":
                     Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza = "Torre";
                     break;
@@ -870,6 +870,7 @@ namespace Colombo_Estrella_TP_LABO_II
                     }
                     else
                     {
+                        //las que se encuentran vacias
                         Console.Write("|.|");
                     }
                 }
@@ -1253,10 +1254,7 @@ namespace Colombo_Estrella_TP_LABO_II
         {
             if (x1 >= 0 && x1 < Tam && y2 >= 0 && y2 < Tam)
             {
-
-
                 return true;
-
             }
             else
             {
