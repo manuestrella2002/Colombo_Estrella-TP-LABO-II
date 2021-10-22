@@ -21,6 +21,8 @@ namespace Colombo_Estrella_TP_LABO_II
            "Rey"
         };
 
+        int contador;
+
         List<string> Lista_Piezas_Sacadas = new List<string>()
         {
            
@@ -57,24 +59,26 @@ namespace Colombo_Estrella_TP_LABO_II
             Lista_Piezas.Remove(Pieza);
             MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[0, 0], Pieza);
 
-            //COLOCAMOS TORRE EN LA ESQUINA SUPERIOR IZQUIERDA POSICION(7,7)
-            Pieza = "Torre2";
-            Lista_Piezas.Remove(Pieza);
-            MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[7, 7], Pieza);
+            ////COLOCAMOS TORRE EN LA ESQUINA SUPERIOR IZQUIERDA POSICION(7,7)
+            //Pieza = "Torre2";
+            //Lista_Piezas.Remove(Pieza);
+            //MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[7, 7], Pieza);
 
         }
 
         public void EncontrarSolucion()
         {
+            
             for (int i = 1; i < 7; i++)
             {
-                for (int j = 0; j < 7; j++)
+                for (int j = 1; j < 7; j++)
                 {
                     if (MiTablero.Matriz[i, j].Ocupados == false && MiTablero.Matriz[i, j].Legal_Movim == false)
                     {
                         int pos = VerificarMejorFicha(MiTablero.Matriz[i,j]);
-                      
-                        if (pos == -1)
+
+                        
+                        if (pos == -1 )
                         {
                             Backtracking();
                             break;
@@ -84,9 +88,13 @@ namespace Colombo_Estrella_TP_LABO_II
                             Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(pos));
                             Lista_Piezas.RemoveAt(pos);
                             MiTablero.ImprimirTablero();
-                        
+                        if (contador != 0)
+                        {
+                            return;
+                        }
                     }
                 }
+              
                 
             }
             //Backtracking();
@@ -101,7 +109,8 @@ namespace Colombo_Estrella_TP_LABO_II
             }
             else
             {
-                int i = 1;
+                int r = 1;
+                int f = 0;
                 while (VerificarSolucion()!=true)
                 {
                     //MiTablero.ImprimirTablero();
@@ -109,19 +118,40 @@ namespace Colombo_Estrella_TP_LABO_II
                     {
                         break;
                     }
-                    Lista_Piezas.AddRange(Lista_Piezas_Sacadas.GetRange(Lista_Piezas_Sacadas.Count() - i, i));
-                    Lista_Piezas_Sacadas.RemoveRange(Lista_Piezas_Sacadas.Count() - i, i);
-
-                    i++;
-
-                    EncontrarSolucion();
-                    if (i>Lista_Piezas_Sacadas.Count)
+                    Lista_Piezas.AddRange(Lista_Piezas_Sacadas.GetRange(Lista_Piezas_Sacadas.Count() - r, r));
+                    Lista_Piezas_Sacadas.RemoveRange(Lista_Piezas_Sacadas.Count() - r, r);
+                   //RECORREMOS A LA INVERSA LA MATRIZ PARA SACAR LA ULTIMA PIEZA QUE PUSO 
+                    for (int i = 6; i >= 0; i--)
+                    {
+                        for (int j = 6; j >= 0; j--)
+                        {
+                            if (MiTablero.Matriz[i,j].Ocupados==true)
+                            {
+                                MiTablero.DesmarcarLugares(MiTablero.Matriz[i, j], MiTablero.Matriz[i, j].Pieza);
+                                MiTablero.ImprimirTablero();
+                                //INDICA LA CANTIDAD DE VECES A SACAR LAS FICHAS QUE ESTAN EN EL TABLERO
+                                //SACA LA MISMA CANTIDAD DE PIEZAS QUE LAS QUE SACA DE LISTA_PIEZAS_SACADAS
+                                if (f==r)
+                                {
+                                    break;
+                                }
+                                f++;
+                            }
+                        }
+                        if (f==r)
+                        {
+                            break;
+                        }
+                    }
+                    r++;
+                    contador++;
+                    //EncontrarSolucion();
+                    if (r>Lista_Piezas_Sacadas.Count)
                     {
                         return;
                     }
                 }
             }
-
         }
 
        public int VerificarMejorFicha(Celda CeldaActual)
@@ -159,7 +189,7 @@ namespace Colombo_Estrella_TP_LABO_II
                     }
                 }
             }
-            if (contador == 64)
+            if (contador == 64 || contador == 63)
             {
                 return true;
             }
