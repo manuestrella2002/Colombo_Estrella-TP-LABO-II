@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Colombo_Estrella_TP_LABO_II
+﻿namespace Colombo_Estrella_TP_LABO_II
 {
     public class Celda
     {
@@ -12,7 +6,7 @@ namespace Colombo_Estrella_TP_LABO_II
         public int NroFila { get; set; }
         public bool Ocupados { get; set; }
         public bool Legal_Movim { get; set; }
-        public string Pieza { get; set;}
+        public string Pieza { get; set; }
 
         public Celda(int x, int y)
         {

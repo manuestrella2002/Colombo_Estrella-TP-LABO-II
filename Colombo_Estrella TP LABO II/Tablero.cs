@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Colombo_Estrella_TP_LABO_II
 {
@@ -47,7 +43,7 @@ namespace Colombo_Estrella_TP_LABO_II
 
             //CAMBIA LA POSICION DONDE SE COLOCA LA PIEZA A OCUPADO
             Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Ocupados = true;
-           
+
             switch (PiezaAjedrez)
             {
                 case "Caballo1":
@@ -56,7 +52,7 @@ namespace Colombo_Estrella_TP_LABO_II
                 case "Caballo2":
                     Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza = "Caballo";
                     break;
-         
+
                 case "Torre1":
                     Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza = "Torre";
                     break;
@@ -80,7 +76,7 @@ namespace Colombo_Estrella_TP_LABO_II
 
 
             //Paso 2: Buscar todos los movientos legales y marcar las celdas como 1
-            switch (Matriz[CeldaActual.NroFila,CeldaActual.NroColumna].Pieza)
+            switch (Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza)
             {
                 //PENSAMOS HACER DINAMIC CAST PARA CADA UNA DE LAS PIEZAS
                 case "Caballo":
@@ -388,52 +384,52 @@ namespace Colombo_Estrella_TP_LABO_II
 
                     break;
 
-                //case "Alfil_Blanco":
+                    //case "Alfil_Blanco":
 
-                //    //DIAGONAL HACIA ABAJO DERECHA
-                //    r = CeldaActual.NroColumna;
+                    //    //DIAGONAL HACIA ABAJO DERECHA
+                    //    r = CeldaActual.NroColumna;
 
-                //    for (int i = CeldaActual.NroFila + 1; i < Tam; i++)
-                //    {
-                //        r++;
-                //        if (VerificarLugar(i, r))
-                //        {
-                //            Matriz[i, r].Legal_Movim = true;
-                //        }
-                //    }
-                //    //DIAGONAL HACIA ARRIBA IZQUIERDA
-                //    r = CeldaActual.NroColumna;
-                //    for (int i = CeldaActual.NroFila - 1; i >= 0; i--)
-                //    {
-                //        r--;
-                //        if (VerificarLugar(i, r))
-                //        {
-                //            Matriz[i, r].Legal_Movim = true;
-                //        }
-                //    }
-                //    //DIAGONAL HACIA ARRIBA DERECHA
-                //    r = CeldaActual.NroColumna;
-                //    for (int i = CeldaActual.NroFila - 1; i >= 0; i--)
-                //    {
-                //        r++;
-                //        if (VerificarLugar(i, r))
-                //        {
-                //            Matriz[i, r].Legal_Movim = true;
-                //        }
-                //    }
-                //    //DIAGONAL HACIA ABAJO IZQUIERDA
-                //    r = CeldaActual.NroColumna;
-                //    for (int i = CeldaActual.NroFila + 1; i < Tam; i++)
-                //    {
-                //        r--;
-                //        if (VerificarLugar(i, r))
-                //        {
-                //            Matriz[i, r].Legal_Movim = true;
-                //        }
+                    //    for (int i = CeldaActual.NroFila + 1; i < Tam; i++)
+                    //    {
+                    //        r++;
+                    //        if (VerificarLugar(i, r))
+                    //        {
+                    //            Matriz[i, r].Legal_Movim = true;
+                    //        }
+                    //    }
+                    //    //DIAGONAL HACIA ARRIBA IZQUIERDA
+                    //    r = CeldaActual.NroColumna;
+                    //    for (int i = CeldaActual.NroFila - 1; i >= 0; i--)
+                    //    {
+                    //        r--;
+                    //        if (VerificarLugar(i, r))
+                    //        {
+                    //            Matriz[i, r].Legal_Movim = true;
+                    //        }
+                    //    }
+                    //    //DIAGONAL HACIA ARRIBA DERECHA
+                    //    r = CeldaActual.NroColumna;
+                    //    for (int i = CeldaActual.NroFila - 1; i >= 0; i--)
+                    //    {
+                    //        r++;
+                    //        if (VerificarLugar(i, r))
+                    //        {
+                    //            Matriz[i, r].Legal_Movim = true;
+                    //        }
+                    //    }
+                    //    //DIAGONAL HACIA ABAJO IZQUIERDA
+                    //    r = CeldaActual.NroColumna;
+                    //    for (int i = CeldaActual.NroFila + 1; i < Tam; i++)
+                    //    {
+                    //        r--;
+                    //        if (VerificarLugar(i, r))
+                    //        {
+                    //            Matriz[i, r].Legal_Movim = true;
+                    //        }
 
-                //    }
+                    //    }
 
-                //    break;
+                    //    break;
 
             }
         }
@@ -767,59 +763,59 @@ namespace Colombo_Estrella_TP_LABO_II
 
                         break;
 
-                    //case "Alfil_Blanco":
+                        //case "Alfil_Blanco":
 
-                    //    //DIAGONAL HACIA ABAJO DERECHA
-                    //    r = CeldaActual.NroColumna;
+                        //    //DIAGONAL HACIA ABAJO DERECHA
+                        //    r = CeldaActual.NroColumna;
 
-                    //    for (int i = CeldaActual.NroFila + 1; i < Tam; i++)
-                    //    {
-                    //        r++;
-                    //        if (VerificarLugar(i, r))
-                    //        {
-                    //            Matriz[i, r].Legal_Movim = false;
-                    //        }
-                    //    }
-                    //    //DIAGONAL HACIA ARRIBA IZQUIERDA
-                    //    r = CeldaActual.NroColumna;
-                    //    for (int i = CeldaActual.NroFila - 1; i >= 0; i--)
-                    //    {
-                    //        r--;
-                    //        if (VerificarLugar(i, r))
-                    //        {
-                    //            Matriz[i, r].Legal_Movim = false;
-                    //        }
-                    //    }
-                    //    //DIAGONAL HACIA ARRIBA DERECHA
-                    //    r = CeldaActual.NroColumna;
-                    //    for (int i = CeldaActual.NroFila - 1; i >= 0; i--)
-                    //    {
-                    //        r++;
-                    //        if (VerificarLugar(i, r))
-                    //        {
-                    //            Matriz[i, r].Legal_Movim = false;
-                    //        }
-                    //    }
-                    //    //DIAGONAL HACIA ABAJO IZQUIERDA
-                    //    r = CeldaActual.NroColumna;
-                    //    for (int i = CeldaActual.NroFila + 1; i < Tam; i++)
-                    //    {
-                    //        r--;
-                    //        if (VerificarLugar(i, r))
-                    //        {
-                    //            Matriz[i, r].Legal_Movim = false;
-                    //        }
+                        //    for (int i = CeldaActual.NroFila + 1; i < Tam; i++)
+                        //    {
+                        //        r++;
+                        //        if (VerificarLugar(i, r))
+                        //        {
+                        //            Matriz[i, r].Legal_Movim = false;
+                        //        }
+                        //    }
+                        //    //DIAGONAL HACIA ARRIBA IZQUIERDA
+                        //    r = CeldaActual.NroColumna;
+                        //    for (int i = CeldaActual.NroFila - 1; i >= 0; i--)
+                        //    {
+                        //        r--;
+                        //        if (VerificarLugar(i, r))
+                        //        {
+                        //            Matriz[i, r].Legal_Movim = false;
+                        //        }
+                        //    }
+                        //    //DIAGONAL HACIA ARRIBA DERECHA
+                        //    r = CeldaActual.NroColumna;
+                        //    for (int i = CeldaActual.NroFila - 1; i >= 0; i--)
+                        //    {
+                        //        r++;
+                        //        if (VerificarLugar(i, r))
+                        //        {
+                        //            Matriz[i, r].Legal_Movim = false;
+                        //        }
+                        //    }
+                        //    //DIAGONAL HACIA ABAJO IZQUIERDA
+                        //    r = CeldaActual.NroColumna;
+                        //    for (int i = CeldaActual.NroFila + 1; i < Tam; i++)
+                        //    {
+                        //        r--;
+                        //        if (VerificarLugar(i, r))
+                        //        {
+                        //            Matriz[i, r].Legal_Movim = false;
+                        //        }
 
-                    //    }
+                        //    }
 
-                    //    break;
+                        //    break;
 
                 }
                 for (int i = 0; i < Tam; i++)
                 {
                     for (int j = 0; j < Tam; j++)
                     {
-                        if (Matriz[i, j].Ocupados==true)
+                        if (Matriz[i, j].Ocupados == true)
                         {
                             MarcarProx_MovLegal(Matriz[i, j], Matriz[i, j].Pieza);
                         }
@@ -849,7 +845,7 @@ namespace Colombo_Estrella_TP_LABO_II
                 for (int j = 0; j < Tam; j++)
                 {
                     Celda C_aux = Matriz[i, j];
-                    if (C_aux.Ocupados == true && C_aux.Pieza=="Caballo")
+                    if (C_aux.Ocupados == true && C_aux.Pieza == "Caballo")
                     {
                         Console.Write("|C|");
                     }
@@ -906,46 +902,46 @@ namespace Colombo_Estrella_TP_LABO_II
             switch (PiezaAjedrez)
             {
                 case "Caballo1":
-                    PiezaAjedrez ="Caballo";
+                    PiezaAjedrez = "Caballo";
                     break;
                 case "Caballo2":
-                    PiezaAjedrez ="Caballo";
+                    PiezaAjedrez = "Caballo";
                     break;
                 case "Torre1":
-                    PiezaAjedrez ="Torre";
+                    PiezaAjedrez = "Torre";
                     break;
                 case "Torre2":
-                    PiezaAjedrez ="Torre";
+                    PiezaAjedrez = "Torre";
                     break;
                 case "Rey":
-                    PiezaAjedrez ="Rey";
+                    PiezaAjedrez = "Rey";
                     break;
                 case "Reina":
-                    PiezaAjedrez ="Reina";
+                    PiezaAjedrez = "Reina";
                     break;
                 case "Alfil_Blanco":
-                    PiezaAjedrez ="Alfil";
+                    PiezaAjedrez = "Alfil";
                     break;
                 case "Alfin_Negro":
-                    PiezaAjedrez ="Alfil";
+                    PiezaAjedrez = "Alfil";
                     break;
             }
 
 
             int contador = 0;
             switch (PiezaAjedrez)
-            { 
+            {
                 case "Caballo":
                     if (VerificarLugar(CeldaActual.NroFila - 2, CeldaActual.NroColumna - 1))
                     {
-                        if (Matriz[CeldaActual.NroFila-2,CeldaActual.NroColumna-1].Legal_Movim==false)
+                        if (Matriz[CeldaActual.NroFila - 2, CeldaActual.NroColumna - 1].Legal_Movim == false)
                         {
                             contador++;
                         }
                     }
                     if (VerificarLugar(CeldaActual.NroFila + 2, CeldaActual.NroColumna + 1))
                     {
-                        if (Matriz[CeldaActual.NroFila+2, CeldaActual.NroColumna+1].Legal_Movim == false)
+                        if (Matriz[CeldaActual.NroFila + 2, CeldaActual.NroColumna + 1].Legal_Movim == false)
                         {
                             contador++;
                         }
@@ -980,20 +976,20 @@ namespace Colombo_Estrella_TP_LABO_II
                     }
                     if (VerificarLugar(CeldaActual.NroFila - 1, CeldaActual.NroColumna + 2))
                     {
-                        if (Matriz[CeldaActual.NroFila - 1, CeldaActual.NroColumna +2].Legal_Movim == false)
+                        if (Matriz[CeldaActual.NroFila - 1, CeldaActual.NroColumna + 2].Legal_Movim == false)
                         {
                             contador++;
                         }
                     }
                     if (VerificarLugar(CeldaActual.NroFila - 1, CeldaActual.NroColumna - 2))
                     {
-                        if (Matriz[CeldaActual.NroFila -1, CeldaActual.NroColumna - 2].Legal_Movim == false)
+                        if (Matriz[CeldaActual.NroFila - 1, CeldaActual.NroColumna - 2].Legal_Movim == false)
                         {
                             contador++;
                         }
                     }
                     break;
-               
+
                 case "Rey":
                     if (VerificarLugar(CeldaActual.NroFila - 1, CeldaActual.NroColumna))
                     {
@@ -1018,21 +1014,21 @@ namespace Colombo_Estrella_TP_LABO_II
                     }
                     if (VerificarLugar(CeldaActual.NroFila + 1, CeldaActual.NroColumna + 1))
                     {
-                        if (Matriz[CeldaActual.NroFila + 1, CeldaActual.NroColumna+ 1].Legal_Movim == false)
+                        if (Matriz[CeldaActual.NroFila + 1, CeldaActual.NroColumna + 1].Legal_Movim == false)
                         {
                             contador++;
                         }
                     }
                     if (VerificarLugar(CeldaActual.NroFila, CeldaActual.NroColumna - 1))
                     {
-                        if (Matriz[CeldaActual.NroFila , CeldaActual.NroColumna - 1].Legal_Movim == false)
+                        if (Matriz[CeldaActual.NroFila, CeldaActual.NroColumna - 1].Legal_Movim == false)
                         {
                             contador++;
                         }
                     }
                     if (VerificarLugar(CeldaActual.NroFila, CeldaActual.NroColumna + 1))
                     {
-                        if (Matriz[CeldaActual.NroFila , CeldaActual.NroColumna +1].Legal_Movim == false)
+                        if (Matriz[CeldaActual.NroFila, CeldaActual.NroColumna + 1].Legal_Movim == false)
                         {
                             contador++;
                         }
@@ -1209,7 +1205,7 @@ namespace Colombo_Estrella_TP_LABO_II
                 case "Alfil_Negro":
 
                     //DIAGONAL HACIA ABAJO DERECHA
-                     r = CeldaActual.NroColumna;
+                    r = CeldaActual.NroColumna;
 
                     for (int i = CeldaActual.NroFila + 1; i < Tam; i++)
                     {
