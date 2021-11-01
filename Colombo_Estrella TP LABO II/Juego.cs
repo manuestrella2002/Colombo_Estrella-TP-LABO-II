@@ -54,19 +54,12 @@ namespace Colombo_Estrella_TP_LABO_II
         }
         public void Poda()
         {
-            Random myObject = new Random();
-            int ranNum1 = myObject.Next(3, 5);
-            int ranNum2 = myObject.Next(3, 5);
             string Pieza;
             //METODO DE PODA
             //COLOCAMOS REINA EN ALGUNO DE LOS CUATRO CUADRADOS CENTRALES
             Pieza = "Reina";
             Lista_Piezas.Remove(Pieza);
             MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[3, 3], Pieza);
-
-            Pieza = "Rey";
-            Lista_Piezas.Remove(Pieza);
-            MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[5, 3], Pieza);
 
 
             //COLOCAMOS TORRE EN LA ESQUINA SUPERIOR IZQUIERDA POSICION(0,0)
@@ -94,32 +87,45 @@ namespace Colombo_Estrella_TP_LABO_II
                 {
                     for (int j = 0; j < 8; j++)
                     {
+                        if (MiTablero.Matriz[i,j].Ocupados==true && )
+                        {
+
+                        }
                         if (MiTablero.Matriz[i, j].Ocupados == false && MiTablero.Matriz[i, j].Legal_Movim == false)
                         {
-                            //SE OBTIENE LA POSICION DE LA PIEZA EN LA LISTA_PIEZAS DE LA QUE CUBRE MAYOR LUGARE DE ATAQUE
+                            //SE OBTIENE LA POSICION DE LA PIEZA EN LA LISTA_PIEZAS DE LA QUE CUBRE MAYOR LUGARES DE ATAQUE
                             pos = VerificarMejorFicha(MiTablero.Matriz[i, j]);
 
                             //ENTREGA -1 SI NO HAY MAS PIEZAS EN LA LISTA Y SE SALE DE LA FUNICION Y VUELVE A LA DE BACKTRACKING
                             if (pos != -1)
                             {
-                                //SE MARCAN LOS LUGARES
-                                MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[i, j], Lista_Piezas.ElementAt(pos));
+                                if (Lista_Piezas.ElementAt(pos) == "Alfil_Negro" || Lista_Piezas.ElementAt(pos) == "Alfil_Blanco")
+                                {
+                                    if (VerificarAlfiles(MiTablero.Matriz[i,j],pos))
+                                    {
+                                        //SE MARCAN LOS LUGARES
+                                        MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[i, j], Lista_Piezas.ElementAt(pos));
+                                        //SE AGREGAN A LA LISTA_PIEZAS SACADAS LAS QUE SE PONEN EN EL TABLERO
+                                        Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(pos));
+                                        Lista_Piezas.RemoveAt(pos);
+                                    }
+                                }
+                                else
+                                {
+                                    //SE MARCAN LOS LUGARES
+                                    MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[i, j], Lista_Piezas.ElementAt(pos));
+                                    //SE AGREGAN A LA LISTA_PIEZAS SACADAS LAS QUE SE PONEN EN EL TABLERO
+                                    Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(pos));
+                                    Lista_Piezas.RemoveAt(pos);
+                                }
                                 
-                                //SE AGREGAN A LA LISTA_PIEZAS SACADAS LAS QUE SE PONEN EN EL TABLERO
-                                Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(pos));
-                                Lista_Piezas.RemoveAt(pos);
-
                             }
                             else
                             {
                                 return;
                             }
-
-
                         }
-
                     }
-
                 }
             }
             else if(cont %2 ==0)
@@ -131,11 +137,8 @@ namespace Colombo_Estrella_TP_LABO_II
                         if (MiTablero.Matriz[i, j].Ocupados == false && MiTablero.Matriz[i, j].Legal_Movim == false)
                         {
                             pos = VerificarMejorFicha(MiTablero.Matriz[i, j]);
-
-
                             if (pos != -1)
                             {
-
                                 MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[i, j], Lista_Piezas.ElementAt(pos));
                                 Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(pos));
                                 Lista_Piezas.RemoveAt(pos);
@@ -158,11 +161,8 @@ namespace Colombo_Estrella_TP_LABO_II
                         if (MiTablero.Matriz[i, j].Ocupados == false && MiTablero.Matriz[i, j].Legal_Movim == false)
                         {
                             pos = VerificarMejorFicha(MiTablero.Matriz[i, j]);
-
-
                             if (pos != -1)
                             {
-
                                 MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[i, j], Lista_Piezas.ElementAt(pos));
                                 Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(pos));
                                 Lista_Piezas.RemoveAt(pos);
@@ -209,7 +209,7 @@ namespace Colombo_Estrella_TP_LABO_II
                             {
                                 //SI EL LUGAR ESTA OCIUPADO POR UNA PIEZA LA SACA Y DESMARCA LOS LUGARES, NOTAR QUE SI ES LA REYNA, LAS TORRES O EL REY
                                 //NO LAS SACARA YA QUE SON CRITERIO DE PODA
-                                if (MiTablero.Matriz[i, j].Ocupados == true && MiTablero.Matriz[i, j].Pieza != "Reina" && MiTablero.Matriz[i, j].Pieza != "Torre" && MiTablero.Matriz[i, j].Pieza != "Rey")
+                                if (MiTablero.Matriz[i, j].Ocupados == true && MiTablero.Matriz[i, j].Pieza != "Reina" && MiTablero.Matriz[i, j].Pieza != "Torre")
                                 {
                                     //FUNCION PARA SACAR Y DESMARCAR PIEZAS Y LUGARES
                                     MiTablero.DesmarcarLugares(MiTablero.Matriz[i, j], MiTablero.Matriz[i, j].Pieza);
@@ -222,7 +222,6 @@ namespace Colombo_Estrella_TP_LABO_II
                                         break;
                                         
                                     }
-
                                 }
                             }
                             if (f == r)
@@ -232,13 +231,10 @@ namespace Colombo_Estrella_TP_LABO_II
                             }
                         }
                         r++;
-
                     }
-
                     //ESTAS FUNCION COLOCA LAS PIEZAS DISPONIBLES EN EL TABLERO
                     EncontrarSolucion();
                     MiTablero.ImprimirTablero();
-                    
                     if (r > Lista_Piezas_Sacadas.Count)
                     {
                         r = 1;
@@ -261,12 +257,7 @@ namespace Colombo_Estrella_TP_LABO_II
             {
                 return -1;
             }
-
-
-
             return Cant_Lugares_A_Ocupar.IndexOf(Cant_Lugares_A_Ocupar.Max());
-
-
         }
 
         //FUNCION PARA VER SI ESTAN TODOS LOS CASILLEROS ATACADOS
@@ -274,8 +265,6 @@ namespace Colombo_Estrella_TP_LABO_II
         public bool VerificarSolucion()
         {
             int contador = 0;
-         
-            
             for (int i = 0; i < MiTablero.Tam; i++)
             {
                 for (int j = 0; j < MiTablero.Tam; j++)
@@ -305,5 +294,30 @@ namespace Colombo_Estrella_TP_LABO_II
             }
         }
 
+        bool VerificarAlfiles(Celda Celda_Actual,int pos)
+        {
+            if (Lista_Piezas.ElementAt(pos)=="Alfil_Blanco")
+            {
+                if (Celda_Actual.Color=="Blanco")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                if (Celda_Actual.Color == "Negro")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
     }
 }
