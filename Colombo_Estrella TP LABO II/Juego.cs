@@ -63,7 +63,7 @@ namespace Colombo_Estrella_TP_LABO_II
             //COLOCAMOS REINA EN ALGUNO DE LOS CUATRO CUADRADOS CENTRALES
             Pieza = "Reina";
             Lista_Piezas.Remove(Pieza);
-            MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[3, 3], Pieza);
+            MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[4, 4], Pieza);
 
 
             //COLOCAMOS TORRE EN LA ESQUINA SUPERIOR IZQUIERDA POSICION(0,0)
@@ -74,7 +74,7 @@ namespace Colombo_Estrella_TP_LABO_II
             ////COLOCAMOS TORRE EN LA ESQUINA SUPERIOR IZQUIERDA POSICION(7,7)
             Pieza = "Torre2";
             Lista_Piezas.Remove(Pieza);
-            MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[7, 7], Pieza);
+            MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[1, 1], Pieza);
 
         }
 
@@ -151,7 +151,7 @@ namespace Colombo_Estrella_TP_LABO_II
                         {
                             //SE OBTIENE LA POSICION DE LA PIEZA EN LA LISTA_PIEZAS DE LA QUE CUBRE MAYOR LUGARES DE ATAQUE
                             pos = VerificarMejorFicha(MiTablero.Matriz[i, j]);
-
+                            MiTablero.ImprimirTablero();
                             //ENTREGA -1 SI NO HAY MAS PIEZAS EN LA LISTA Y SE SALE DE LA FUNICION Y VUELVE A LA DE BACKTRACKING
                             if (pos != -1)
                             {
@@ -193,11 +193,29 @@ namespace Colombo_Estrella_TP_LABO_II
                         if (MiTablero.Matriz[i, j].Ocupados == false && MiTablero.Matriz[i, j].Legal_Movim == false)
                         {
                             pos = VerificarMejorFicha(MiTablero.Matriz[i, j]);
+                            MiTablero.ImprimirTablero();
                             if (pos != -1)
                             {
-                                MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[i, j], Lista_Piezas.ElementAt(pos));
-                                Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(pos));
-                                Lista_Piezas.RemoveAt(pos);
+                                if (Lista_Piezas.ElementAt(pos) == "Alfil_Negro" || Lista_Piezas.ElementAt(pos) == "Alfil_Blanco")
+                                {
+                                    if (VerificarAlfiles(MiTablero.Matriz[i, j], pos))
+                                    {
+                                        //SE MARCAN LOS LUGARES
+                                        MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[i, j], Lista_Piezas.ElementAt(pos));
+                                        //SE AGREGAN A LA LISTA_PIEZAS SACADAS LAS QUE SE PONEN EN EL TABLERO
+                                        Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(pos));
+                                        Lista_Piezas.RemoveAt(pos);
+                                    }
+                                }
+                                else
+                                {
+                                    //SE MARCAN LOS LUGARES
+                                    MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[i, j], Lista_Piezas.ElementAt(pos));
+                                    //SE AGREGAN A LA LISTA_PIEZAS SACADAS LAS QUE SE PONEN EN EL TABLERO
+                                    Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(pos));
+                                    Lista_Piezas.RemoveAt(pos);
+                                }
+
                             }
                             else
                             {
@@ -216,11 +234,29 @@ namespace Colombo_Estrella_TP_LABO_II
                         if (MiTablero.Matriz[i, j].Ocupados == false && MiTablero.Matriz[i, j].Legal_Movim == false)
                         {
                             pos = VerificarMejorFicha(MiTablero.Matriz[i, j]);
+                            MiTablero.ImprimirTablero();
                             if (pos != -1)
                             {
-                                MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[i, j], Lista_Piezas.ElementAt(pos));
-                                Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(pos));
-                                Lista_Piezas.RemoveAt(pos);
+                                if (Lista_Piezas.ElementAt(pos) == "Alfil_Negro" || Lista_Piezas.ElementAt(pos) == "Alfil_Blanco")
+                                {
+                                    if (VerificarAlfiles(MiTablero.Matriz[i, j], pos))
+                                    {
+                                        //SE MARCAN LOS LUGARES
+                                        MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[i, j], Lista_Piezas.ElementAt(pos));
+                                        //SE AGREGAN A LA LISTA_PIEZAS SACADAS LAS QUE SE PONEN EN EL TABLERO
+                                        Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(pos));
+                                        Lista_Piezas.RemoveAt(pos);
+                                    }
+                                }
+                                else
+                                {
+                                    //SE MARCAN LOS LUGARES
+                                    MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[i, j], Lista_Piezas.ElementAt(pos));
+                                    //SE AGREGAN A LA LISTA_PIEZAS SACADAS LAS QUE SE PONEN EN EL TABLERO
+                                    Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(pos));
+                                    Lista_Piezas.RemoveAt(pos);
+                                }
+
                             }
                             else
                             {
@@ -327,7 +363,7 @@ namespace Colombo_Estrella_TP_LABO_II
                     }
                 }
             }
-            if (contador >= 60 && contador <= 64)
+            if (contador == 64)
             {
                     for (int i = 0; i < Soluciones_Encontradas.Count; i++)
                     {
