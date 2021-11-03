@@ -91,62 +91,7 @@ namespace Colombo_Estrella_TP_LABO_II
                 {
                     for (int j = 0; j < 8; j++)
                     {
-                        //if (MiTablero.Matriz[i,j].Ocupados==true)
-                        //{
-                        //    if (MiTablero.Matriz[i,j].Pieza=="Caballo")
-                        //    {
-                        //        if (Lista_Piezas.Contains("Alfil_Blanco"))
-                        //        {
-                        //            pos = Lista_Piezas.BinarySearch("Alfil_Blanco");
-
-                        //        }
-                        //        else if (Lista_Piezas.Contains("Alfil_Negro"))
-                        //        {
-                        //            pos = Lista_Piezas.BinarySearch("Alfil_Negro");
-                        //        }
-                        //    }
-                        //    else if (MiTablero.Matriz[i, j].Pieza == "Alfil_Blanco" || MiTablero.Matriz[i, j].Pieza == "Alfil_Negro")
-                        //    {
-                        //        if (Lista_Piezas.Contains("Caballo1"))
-                        //        {
-                        //            pos = Lista_Piezas.BinarySearch("Caballo1");
-                        //        }
-                        //        else if(Lista_Piezas.Contains("Caballo2"))
-                        //        {
-                        //            pos = Lista_Piezas.BinarySearch("Caballo2");
-                        //        }
-                        //    }
-                        //    //SE OBTIENE LA POSICION DE LA PIEZA EN LA LISTA_PIEZAS DE LA QUE CUBRE MAYOR LUGARES DE ATAQUE
-                        //    pos = VerificarMejorFicha(MiTablero.Matriz[i, j]);
-                            
-                        //    //ENTREGA -1 SI NO HAY MAS PIEZAS EN LA LISTA Y SE SALE DE LA FUNICION Y VUELVE A LA DE BACKTRACKING
-                        //    if (pos != -1)
-                        //    {
-                        //        if (Lista_Piezas.ElementAt(pos) == "Alfil_Negro" || Lista_Piezas.ElementAt(pos) == "Alfil_Blanco")
-                        //        {
-                        //            if (VerificarAlfiles(MiTablero.Matriz[i, j], pos))
-                        //            {
-                        //                //SE MARCAN LOS LUGARES
-                        //                MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[i, j], Lista_Piezas.ElementAt(pos));
-                        //                //SE AGREGAN A LA LISTA_PIEZAS SACADAS LAS QUE SE PONEN EN EL TABLERO
-                        //                Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(pos));
-                        //                Lista_Piezas.RemoveAt(pos);
-                        //            }
-                        //        }
-                        //        else
-                        //        {
-                        //            //SE MARCAN LOS LUGARES
-                        //            MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[i, j], Lista_Piezas.ElementAt(pos));
-                        //            //SE AGREGAN A LA LISTA_PIEZAS SACADAS LAS QUE SE PONEN EN EL TABLERO
-                        //            Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(pos));
-                        //            Lista_Piezas.RemoveAt(pos);
-                        //        }
-                        //    }
-                        //    else
-                        //    {
-                        //        return;
-                        //    }
-                        //}
+                        
                         if (MiTablero.Matriz[i, j].Ocupados == false && MiTablero.Matriz[i, j].Legal_Movim == false)
                         {
                             //SE OBTIENE LA POSICION DE LA PIEZA EN LA LISTA_PIEZAS DE LA QUE CUBRE MAYOR LUGARES DE ATAQUE
