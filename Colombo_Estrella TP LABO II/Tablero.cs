@@ -43,40 +43,42 @@ namespace Colombo_Estrella_TP_LABO_II
 
             //CAMBIA LA POSICION DONDE SE COLOCA LA PIEZA A OCUPADO
             Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Ocupados = true;
-
-            switch (PiezaAjedrez)
+            Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza = PiezaAjedrez;
+            string aux = PiezaAjedrez;
+            
+            switch (aux)
             {
                 case "Caballo1":
-                    Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza = "Caballo";
+                    aux = "Caballo";
                     break;
                 case "Caballo2":
-                    Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza = "Caballo";
+                    aux = "Caballo";
                     break;
 
                 case "Torre1":
-                    Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza = "Torre";
+                    aux = "Torre";
                     break;
                 case "Torre2":
-                    Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza = "Torre";
+                    aux = "Torre";
                     break;
                 case "Rey":
-                    Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza = "Rey";
+                    aux = "Rey";
                     break;
                 case "Reina":
-                    Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza = "Reina";
+                    aux = "Reina";
                     break;
                 case "Alfil_Blanco":
-                    Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza = "Alfil";
+                    aux = "Alfil";
                     break;
                 case "Alfil_Negro":
-                    Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza = "Alfil";
+                    aux = "Alfil";
                     break;
             }
 
 
 
             //Paso 2: Buscar todos los movientos legales y marcar las celdas como 1
-            switch (Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza)
+            switch (aux)
             {
                 //PENSAMOS HACER DINAMIC CAST PARA CADA UNA DE LAS PIEZAS
                 case "Caballo":
@@ -322,12 +324,40 @@ namespace Colombo_Estrella_TP_LABO_II
 
                 //CAMBIA LA POSICION DONDE SE COLOCA LA PIEZA A OCUPADO
                 Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Ocupados = false;
+                string aux = PiezaAjedrez;
 
+                switch (aux)
+                {
+                    case "Caballo1":
+                        aux = "Caballo";
+                        break;
+                    case "Caballo2":
+                        aux = "Caballo";
+                        break;
 
+                    case "Torre1":
+                        aux = "Torre";
+                        break;
+                    case "Torre2":
+                        aux = "Torre";
+                        break;
+                    case "Rey":
+                        aux = "Rey";
+                        break;
+                    case "Reina":
+                        aux = "Reina";
+                        break;
+                    case "Alfil_Blanco":
+                        aux = "Alfil";
+                        break;
+                    case "Alfil_Negro":
+                        aux = "Alfil";
+                        break;
+                }
 
 
                 //Paso 2: Buscar todos los movientos legales y marcar las celdas como 1
-                switch (PiezaAjedrez)
+                switch (aux)
                 {
                     //PENSAMOS HACER DINAMIC CAST PARA CADA UNA DE LAS PIEZAS
                     case "Caballo":
@@ -574,6 +604,7 @@ namespace Colombo_Estrella_TP_LABO_II
 
 
                 }
+              
                 for (int i = 0; i < Tam; i++)
                 {
                     for (int j = 0; j < Tam; j++)
@@ -603,48 +634,78 @@ namespace Colombo_Estrella_TP_LABO_II
 
         public void ImprimirTablero()
         {
+            string aux;
             for (int i = 0; i < Tam; i++)
             {
                 for (int j = 0; j < Tam; j++)
                 {
                     Celda C_aux = Matriz[i, j];
-                    if (C_aux.Ocupados == true && C_aux.Pieza == "Caballo")
+                    aux = C_aux.Pieza;
+                    switch (aux)
+                    {
+                        case "Caballo1":
+                            aux = "Caballo";
+                            break;
+                        case "Caballo2":
+                            aux = "Caballo";
+                            break;
+
+                        case "Torre1":
+                            aux = "Torre";
+                            break;
+                        case "Torre2":
+                            aux = "Torre";
+                            break;
+                        case "Rey":
+                            aux = "Rey";
+                            break;
+                        case "Reina":
+                            aux = "Reina";
+                            break;
+                        case "Alfil_Blanco":
+                            aux = "Alfil";
+                            break;
+                        case "Alfil_Negro":
+                            aux = "Alfil";
+                            break;
+                    }
+                    if (C_aux.Ocupados == true && aux == "Caballo")
                     {
                         Console.Write("|C|");
                     }
-                    else if (C_aux.Ocupados == true && C_aux.Pieza == "Reina")
+                    else if (C_aux.Ocupados == true && aux == "Reina")
                     {
                         Console.Write("|R|");
                     }
-                    else if (C_aux.Ocupados == true && C_aux.Pieza == "Rey")
+                    else if (C_aux.Ocupados == true && aux == "Rey")
                     {
                         Console.Write("|r|");
                     }
-                    else if (C_aux.Ocupados == true && C_aux.Pieza == "Torre")
+                    else if (C_aux.Ocupados == true && aux == "Torre")
                     {
                         Console.Write("|T|");
                     }
-                    else if (C_aux.Ocupados == true && C_aux.Pieza == "Alfil")
+                    else if (C_aux.Ocupados == true && aux == "Alfil")
                     {
                         Console.Write("|A|");
                     }
-                    else if (C_aux.Legal_Movim == true && C_aux.Pieza != "Caballo")
+                    else if (C_aux.Legal_Movim == true && aux != "Caballo")
                     {
                         Console.Write("|+|");
                     }
-                    else if (C_aux.Legal_Movim == true && C_aux.Pieza != "Torre")
+                    else if (C_aux.Legal_Movim == true && aux != "Torre")
                     {
                         Console.Write("|+|");
                     }
-                    else if (C_aux.Legal_Movim == true && C_aux.Pieza != "Rey")
+                    else if (C_aux.Legal_Movim == true && aux != "Rey")
                     {
                         Console.Write("|+|");
                     }
-                    else if (C_aux.Legal_Movim == true && C_aux.Pieza != "Reina")
+                    else if (C_aux.Legal_Movim == true && aux != "Reina")
                     {
                         Console.Write("|+|");
                     }
-                    else if (C_aux.Legal_Movim == true && C_aux.Pieza != "Alfil")
+                    else if (C_aux.Legal_Movim == true && aux != "Alfil")
                     {
                         Console.Write("|+|");
                     }
@@ -662,37 +723,38 @@ namespace Colombo_Estrella_TP_LABO_II
 
         public int CalcularCantMovLegales(Celda CeldaActual, string PiezaAjedrez)
         {
-            switch (PiezaAjedrez)
+            string aux=PiezaAjedrez;
+            switch (aux)
             {
                 case "Caballo1":
-                    PiezaAjedrez = "Caballo";
+                    aux = "Caballo";
                     break;
                 case "Caballo2":
-                    PiezaAjedrez = "Caballo";
+                    aux = "Caballo";
                     break;
                 case "Torre1":
-                    PiezaAjedrez = "Torre";
+                    aux = "Torre";
                     break;
                 case "Torre2":
-                    PiezaAjedrez = "Torre";
+                    aux = "Torre";
                     break;
                 case "Rey":
-                    PiezaAjedrez = "Rey";
+                    aux = "Rey";
                     break;
                 case "Reina":
-                    PiezaAjedrez = "Reina";
+                    aux = "Reina";
                     break;
                 case "Alfil_Blanco":
-                    PiezaAjedrez = "Alfil";
+                    aux = "Alfil";
                     break;
-                case "Alfin_Negro":
-                    PiezaAjedrez = "Alfil";
+                case "Alfil_Negro":
+                    aux = "Alfil";
                     break;
             }
 
 
             int contador = 0;
-            switch (PiezaAjedrez)
+            switch (aux)
             {
                 case "Caballo":
                     if (VerificarLugar(CeldaActual.NroFila - 2, CeldaActual.NroColumna - 1))
@@ -965,7 +1027,7 @@ namespace Colombo_Estrella_TP_LABO_II
                     }
                     break;
 
-                case "Alfil_Negro":
+                case "Alfil":
 
                     //DIAGONAL HACIA ABAJO DERECHA
                     r = CeldaActual.NroColumna;

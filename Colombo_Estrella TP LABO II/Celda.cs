@@ -9,6 +9,7 @@
         public bool Legal_Movim { get; set; }
         public string Pieza { get; set; }
         public string Color { get; set; }
+        public int aux { get; set; }
        
         public Celda(int x, int y)
         {
