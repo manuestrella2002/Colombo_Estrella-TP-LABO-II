@@ -56,7 +56,7 @@ namespace Colombo_Estrella_TP_LABO_II
 
 
         }
-
+        //COPIA CADA MATRIZ A LA LISTA DE SOLUCIONES
         private void CopiarTablero(int i)
         {
             for (int j = 0; j < MiTablero.Tam; j++)
@@ -67,7 +67,7 @@ namespace Colombo_Estrella_TP_LABO_II
                 }
             }
         }
-
+        
         public void Poda()
         {
             //METODO DE PODA
@@ -95,19 +95,15 @@ namespace Colombo_Estrella_TP_LABO_II
 
 
 
-
+            //MIENTRAS QIE LA LISTA DE PIEZAS DISPONIBLES NO ESTE VACIA
             while (Lista_Piezas.Count != 0)
             {
-                //if (Lista_Piezas.Count == 1)
-                //{
-                //    Unapieza();
-                //    return;
-                //}
+                //SE BUSCAN DOS POSIONES ALEATORIAS
                 i = aux1.Next(3, 8);
                 j = aux2.Next(3, 8);
-                // MiTablero.ImprimirTablero();
+                //SE CALCULA LA MEJOR PIEZA PARA ESA POSICION
                 pos = VerificarMejorFicha(MiTablero.Matriz[i, j]);
-
+                //SI LA POS ES -1 E SQUE NO HAY MAS PIEZAS EN LA LISTA
                 if (pos == -1)
                 {
                     return;
@@ -127,7 +123,6 @@ namespace Colombo_Estrella_TP_LABO_II
                                 Lista_Piezas.RemoveAt(pos);
                                 ControlListas();
 
-                                // MiTablero.ImprimirTablero();
                             }
                             else
                             {
@@ -151,12 +146,11 @@ namespace Colombo_Estrella_TP_LABO_II
                                     Lista_Piezas.RemoveAt(pos);
                                     ControlListas();
 
-                                    //MiTablero.ImprimirTablero();
                                 }
 
                             }
                         }
-                        else if (/*MiTablero.Matriz[i, j].Ocupados == false &&*/ Lista_Piezas.ElementAt(pos) == Alfil_Negro)
+                        else if (Lista_Piezas.ElementAt(pos) == Alfil_Negro)
                         {
                             if (VerificarAlfiles(MiTablero.Matriz[i, j], pos) && MiTablero.Matriz[i, j].Ocupados == false)
                             {
@@ -167,7 +161,7 @@ namespace Colombo_Estrella_TP_LABO_II
                                 Lista_Piezas.RemoveAt(pos);
                                 ControlListas();
 
-                                //MiTablero.ImprimirTablero();
+                                
                             }
                             else
                             {
@@ -191,7 +185,7 @@ namespace Colombo_Estrella_TP_LABO_II
                                     Lista_Piezas.RemoveAt(pos);
                                     ControlListas();
 
-                                    //MiTablero.ImprimirTablero();
+                                    
                                 }
 
                             }
@@ -212,7 +206,7 @@ namespace Colombo_Estrella_TP_LABO_II
                             Lista_Celdas_Ocupadas.Add(MiTablero.Matriz[i, j]);
                             Lista_Piezas.RemoveAt(pos);
                             ControlListas();
-                            //MiTablero.ImprimirTablero();
+                            
                         }
                     }
                 }
@@ -220,15 +214,7 @@ namespace Colombo_Estrella_TP_LABO_II
         }
         public void Backtracking1()
         {
-            //SI LA SOLUCION YA EXISTE SE TERMINA EL PROGRAMA
-            //if (VerificarSolucion() == true)
-            //{
-            //    Cont++;
-            //    return;
-            //}
-            //else
-            //{
-            // MiTablero.ImprimirTablero();
+            
             int r = 1;
             int f = 0;
             //CICLO WHILE PARA SACAR PIEZAS
@@ -246,17 +232,18 @@ namespace Colombo_Estrella_TP_LABO_II
                     f = 0;
                     while (f != r)
                     {
+                        //RECIBE LA ULTIMA LA ULTIMA CELDA DE LA LISTA DE CELDAS OCUPADAS
                         MiTablero.DesmarcarLugares(MiTablero.Matriz[Lista_Celdas_Ocupadas.Last().NroFila, Lista_Celdas_Ocupadas.Last().NroColumna], Lista_Celdas_Ocupadas.Last().Pieza1);
                         Lista_Celdas_Ocupadas.RemoveAt(Lista_Celdas_Ocupadas.Count - 1);
                         Lista_Piezas_Sacadas.RemoveAt(Lista_Piezas_Sacadas.Count - 1);
-                        // MiTablero.ImprimirTablero();
+                        
                         f++;
                     }
                     r++;
+                    
                     ControlListas();
                 }
                 //ESTAS FUNCION COLOCA LAS PIEZAS DISPONIBLES EN EL TABLERO
-                //MiTablero.ImprimirTablero();
                 EncontrarSolucion1();
                 if (r > Lista_Piezas_Sacadas.Count)
                 {
@@ -264,41 +251,10 @@ namespace Colombo_Estrella_TP_LABO_II
 
                 }
             }
-            //}
+            
         }
 
-
-        public void Unapieza()
-        {
-            List<Celda> Lugares = new List<Celda>();
-            List<int> Cant_Lugares = new List<int>();
-            for (int i = 3; i < 8; i++)
-            {
-                for (int j = 3; j < 8; j++)
-                {
-                    if (MiTablero.Matriz[i, j].Ocupados == false)
-                    {
-                        MiTablero.Matriz[i, j].aux = MiTablero.CalcularCantMovLegales(MiTablero.Matriz[i, j], Lista_Piezas.ElementAt(0));
-                        Lugares.Add(MiTablero.Matriz[i, j]);
-                        Cant_Lugares.Add(MiTablero.Matriz[i, j].aux);
-                    }
-                }
-            }
-
-            int pos = Cant_Lugares.IndexOf(Cant_Lugares.Max());
-
-            MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[Lugares.ElementAt(pos).NroFila, Lugares.ElementAt(pos).NroColumna], Lista_Piezas.ElementAt(0));
-            Lista_Celdas_Ocupadas.Add(MiTablero.Matriz[Lugares.ElementAt(pos).NroFila, Lugares.ElementAt(pos).NroColumna]);
-            Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(0));
-            Lista_Piezas.RemoveAt(0);
-            //MiTablero.ImprimirTablero();
-
-        }
-
-
-
-
-
+        //VERIFICA LA MEJOR FICHA PARA UNA POSICION DETERMINADA
         public int VerificarMejorFicha(Celda CeldaActual)
         {
             List<int> Cant_Lugares_A_Ocupar = new List<int>();
@@ -318,13 +274,10 @@ namespace Colombo_Estrella_TP_LABO_II
 
 
         //FUNCION PARA VER SI ESTAN TODOS LOS CASILLEROS ATACADOS
-        //PUSIMOS 63 CASILLEROS PORQUE NOS FALTA  LA FUNCION DE PODER SUPERPONER EL CABALLO Y EL ALFIL
+      
         public bool VerificarSolucion()
         {
-            //if (PodaDeSoluciones()==false)
-            //{
-            //    return false;
-            //}
+            
             int contador = 0;
             for (int i = 0; i < MiTablero.Tam; i++)
             {
@@ -338,15 +291,10 @@ namespace Colombo_Estrella_TP_LABO_II
             }
             if (contador == 64)
             {
+                //SI ESTAN TODOS ATACADOS VERIFCA SI ESA YA EXISTE SI NO VUELVE A HACER BACKTRACKING
                 for (int r = 0; r < Soluciones_Encontradas.Count; r++)
                 {
-                    //if (Soluciones_Encontradas[i] == MiTablero.Matriz)
-                    //{
-                    //    MiTablero.ImprimirTablero();
-                    ////ACA SACA TODOS LOS TABLEROS BIEN CAMBIE EL RETURN FALSE POR UN TRUE
-                    //    return true;
-
-                    //}
+                 
                     for (int i = 0; i < MiTablero.Tam; i++)
                     {
                         for (int j = 0; j < MiTablero.Tam; j++)
@@ -366,7 +314,7 @@ namespace Colombo_Estrella_TP_LABO_II
                 return false;
             }
         }
-
+        //VERIIFICA QUE DONDE VA APONER UN ALFIL SI LA CELDA ES DEL COLOR RESPECTIVO
         bool VerificarAlfiles(Celda Celda_Actual, int pos)
         {
             if (Lista_Piezas.ElementAt(pos) is Alfil aux1 && aux1.Color_ == Pieza_Ajedrez.Color_Pieza.BLANCO && Celda_Actual.Color == Celda.Color_Celda.BLANCO)
@@ -384,31 +332,7 @@ namespace Colombo_Estrella_TP_LABO_II
 
         }
 
-        bool PodaDeSoluciones()
-        {
-            int cont1 = 0;
-            if (Lista_Piezas.Count == 1 && Lista_Piezas.Contains(rey))
-            {
-                for (int i = 0; i < MiTablero.Tam; i++)
-                {
-                    for (int j = 0; j < MiTablero.Tam; j++)
-                    {
-                        if (MiTablero.Matriz[i, j].Legal_Movim == false)
-                        {
-                            cont1++;
-                            if (cont1 >= 10)
-                            {
-                                return false;
-                            }
-                        }
-                    }
-                }
-            }
-
-            return true;
-
-        }
-
+        //PERMITE COLOCAR ALFIL Y CABALLO SUPERPUESTOS
         bool Condiciones(int i, int j, int pos)
         {
             if (MiTablero.Matriz[i, j].Ocupados == true && MiTablero.Matriz[i, j].Pieza1 is Caballo && Lista_Piezas.ElementAt(pos) == Alfil_Blanco && MiTablero.Matriz[i, j].Color == Celda.Color_Celda.BLANCO)
@@ -464,7 +388,8 @@ namespace Colombo_Estrella_TP_LABO_II
                 return false;
             }
         }
-
+        //SE ENCARGA DE QUE LAS LISTAS NO SE PASEN DE ELEMENTOS 
+        //EJ UNA LISTA NO PUEDE TENER TRES CABALLOS
         void ControlListas()
         {
            
@@ -481,7 +406,7 @@ namespace Colombo_Estrella_TP_LABO_II
             
 
         }
-
+        
         void ReiniciarListas()
         {
             Lista_Piezas.RemoveRange(0, Lista_Piezas.Count);

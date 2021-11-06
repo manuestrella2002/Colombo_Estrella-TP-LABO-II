@@ -100,14 +100,14 @@ namespace Colombo_Estrella_TP_LABO_II
 
                     //COLOCO CADA BOTON EN UNA POSICION ESPECIFICA
                     Matriz1[i, j].Location = new Point(j * labelsize, i * labelsize);
-                    Matriz2[i, j].Location = new Point(j * labelsize, i * labelsize);
+                    Matriz2[i, j].Location = new Point(j * labelsize , i * labelsize);
                     Matriz3[i, j].Location = new Point(j * labelsize, i * labelsize);
                     Matriz4[i, j].Location = new Point(j * labelsize, i * labelsize);
                     Matriz5[i, j].Location = new Point(j * labelsize, i * labelsize);
                     Matriz6[i, j].Location = new Point(j * labelsize, i * labelsize);
-                    Matriz7[i, j].Location = new Point(j * labelsize, i * labelsize);
-                    Matriz8[i, j].Location = new Point(j * labelsize, i * labelsize);
-                    Matriz9[i, j].Location = new Point(j * labelsize, i * labelsize);
+                    Matriz7[i, j].Location = new Point(j * labelsize, i * labelsize );
+                    Matriz8[i, j].Location = new Point(j * labelsize, i * labelsize );
+                    Matriz9[i, j].Location = new Point(j * labelsize, i * labelsize );
                     Matriz10[i, j].Location = new Point(j * labelsize, i * labelsize);
 
 

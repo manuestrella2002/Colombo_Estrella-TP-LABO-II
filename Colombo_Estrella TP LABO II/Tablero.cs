@@ -35,6 +35,7 @@ namespace Colombo_Estrella_TP_LABO_II
             //CAMBIA LA POSICION DONDE SE COLOCA LA PIEZA A OCUPADO
             Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Ocupados = true;
             Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Legal_Movim = false;
+            //SI YA HAY UNA PIEZA SE MARCAN LAS CAASILLAS DE ATAQUE DE LA SEGUNDA PIEZA (SOLO SUCEDE SI HAY UN VCABALLO O UN ALFIL PREVIAMENTE)
             if (CeldaActual.Pieza1 != null)
             {
                 Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza1 = Pieza_;
@@ -669,16 +670,13 @@ namespace Colombo_Estrella_TP_LABO_II
 
 
         }
-
+        //
         public void DesmarcarLugares(Celda CeldaActual, Pieza_Ajedrez Pieza_)
         {
             {
                 int r;
                 //CAMBIA LA POSICION DONDE SE COLOCA LA PIEZA A OCUPADO
-                //Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Ocupados = false;
-
-                //Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza1 = null;
-
+                //SI HAY DOS PIEZAS EN LA CELDA SE DESMARCA SOLO LA SEGUNDA Y LA CASILLA QUEDA CON LA PRIMERA Y COMO OCUPADA
                 if (Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza2 != null)
                 {
                     if (Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza2 is Caballo)
@@ -1320,7 +1318,7 @@ namespace Colombo_Estrella_TP_LABO_II
 
 
 
-                //PARA VOLVER A MARCAR EL TABLERO
+                //PARA VOLVER A MARCAR EL TABLERO POR SI SE DESMARCO UNA CASILLA ATACADA
                 for (int i = 0; i < Tam; i++)
                 {
                     for (int j = 0; j < Tam; j++)
@@ -1330,13 +1328,13 @@ namespace Colombo_Estrella_TP_LABO_II
                             if (Matriz[i, j].Pieza2 == null)
                             {
                                 MarcarProx_MovLegal(Matriz[i, j], Matriz[i, j].Pieza1);
-                                //MiTablero.ImprimirTablero();
+                               
                             }
                             else
                             {
                                 Matriz[i, j].Legal_Movim = false;
                                 MarcarProx_MovLegal(Matriz[i, j], Matriz[i, j].Pieza1);
-                                //MiTablero.ImprimirTablero();
+                               
                             }
 
                         }
@@ -1444,10 +1442,10 @@ namespace Colombo_Estrella_TP_LABO_II
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("========================");
+            Console.WriteLine("=============================");
 
         }
-
+        //FUNCION PARA CALCULAR LA CANTIDAD DE MOVIMIENTOS LEGALES Y ASI SACAR CUAL ES LA MEJOR PIEZA DESPUES
         public int CalcularCantMovLegales(Celda CeldaActual, Pieza_Ajedrez pieza_)
         {
 
