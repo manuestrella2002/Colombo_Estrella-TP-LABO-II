@@ -10,6 +10,7 @@ namespace Colombo_Estrella_TP_LABO_II
         //FUNCION PARA OBTENER LA CELDA DE LA MATRIZ[i,j]
         public Celda[,] Matriz { get; set; }
 
+        
         //CONSTRUCTOR DEL TABLERO
         public Tablero(int s)
         {
@@ -36,7 +37,7 @@ namespace Colombo_Estrella_TP_LABO_II
 
             if (CeldaActual.Pieza1 != null)
             {
-                Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza2 = Pieza_;
+                Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza1 = Pieza_;
                 if (Pieza_ is Caballo)
                 {
                     if (VerificarLugar(CeldaActual.NroFila - 2, CeldaActual.NroColumna - 1))
@@ -992,11 +993,11 @@ namespace Colombo_Estrella_TP_LABO_II
                         }
                     }
                     Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza2 = null;
+                    CeldaActual.Pieza2 = null;
                 }
                 else
                 {
-                    Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Ocupados = false;
-                    Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza1 = null;
+
                     if (Pieza_ is Caballo)
                     {
                         if (VerificarLugar(CeldaActual.NroFila - 2, CeldaActual.NroColumna - 1))
@@ -1308,319 +1309,12 @@ namespace Colombo_Estrella_TP_LABO_II
                             Matriz[CeldaActual.NroFila - 1, CeldaActual.NroColumna - 2].Legal_Movim = false;
                         }
                     }
+                    Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Ocupados = false;
+                    Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza1 = null;
+                    CeldaActual.Pieza1 = null;
                 }
 
-                //if (Pieza_ is Caballo)
-                //{
-                //    if (VerificarLugar(CeldaActual.NroFila - 2, CeldaActual.NroColumna - 1))
-                //    {
-                //        Matriz[CeldaActual.NroFila - 2, CeldaActual.NroColumna - 1].Legal_Movim = false;
-                //    }
-                //    if (VerificarLugar(CeldaActual.NroFila + 2, CeldaActual.NroColumna + 1))
-                //    {
-                //        Matriz[CeldaActual.NroFila + 2, CeldaActual.NroColumna + 1].Legal_Movim = false;
-                //    }
-                //    if (VerificarLugar(CeldaActual.NroFila + 2, CeldaActual.NroColumna - 1))
-                //    {
-                //        Matriz[CeldaActual.NroFila + 2, CeldaActual.NroColumna - 1].Legal_Movim = false;
-                //    }
-                //    if (VerificarLugar(CeldaActual.NroFila - 2, CeldaActual.NroColumna + 1))
-                //    {
-                //        Matriz[CeldaActual.NroFila - 2, CeldaActual.NroColumna + 1].Legal_Movim = false;
-                //    }
-                //    if (VerificarLugar(CeldaActual.NroFila + 1, CeldaActual.NroColumna + 2))
-                //    {
-                //        Matriz[CeldaActual.NroFila + 1, CeldaActual.NroColumna + 2].Legal_Movim = false;
-                //    }
-                //    if (VerificarLugar(CeldaActual.NroFila + 1, CeldaActual.NroColumna - 2))
-                //    {
-                //        Matriz[CeldaActual.NroFila + 1, CeldaActual.NroColumna - 2].Legal_Movim = false;
-                //    }
-                //    if (VerificarLugar(CeldaActual.NroFila - 1, CeldaActual.NroColumna + 2))
-                //    {
-                //        Matriz[CeldaActual.NroFila - 1, CeldaActual.NroColumna + 2].Legal_Movim = false;
-                //    }
-                //    if (VerificarLugar(CeldaActual.NroFila - 1, CeldaActual.NroColumna - 2))
-                //    {
-                //        Matriz[CeldaActual.NroFila - 1, CeldaActual.NroColumna - 2].Legal_Movim = false;
-                //    }
-                //}
-                //else if (Pieza_ is Rey)
-                //{
-                //    if (VerificarLugar(CeldaActual.NroFila - 1, CeldaActual.NroColumna))
-                //    {
-                //        Matriz[CeldaActual.NroFila - 1, CeldaActual.NroColumna].Legal_Movim = false;
-                //    }
-                //    if (VerificarLugar(CeldaActual.NroFila + 1, CeldaActual.NroColumna))
-                //    {
-                //        Matriz[CeldaActual.NroFila + 1, CeldaActual.NroColumna].Legal_Movim = false;
-                //    }
-                //    if (VerificarLugar(CeldaActual.NroFila - 1, CeldaActual.NroColumna - 1))
-                //    {
-                //        Matriz[CeldaActual.NroFila - 1, CeldaActual.NroColumna - 1].Legal_Movim = false;
-                //    }
-                //    if (VerificarLugar(CeldaActual.NroFila + 1, CeldaActual.NroColumna + 1))
-                //    {
-                //        Matriz[CeldaActual.NroFila + 1, CeldaActual.NroColumna + 1].Legal_Movim = false;
-                //    }
-                //    if (VerificarLugar(CeldaActual.NroFila, CeldaActual.NroColumna - 1))
-                //    {
-                //        Matriz[CeldaActual.NroFila, CeldaActual.NroColumna - 1].Legal_Movim = false;
-                //    }
-                //    if (VerificarLugar(CeldaActual.NroFila, CeldaActual.NroColumna + 1))
-                //    {
-                //        Matriz[CeldaActual.NroFila, CeldaActual.NroColumna + 1].Legal_Movim = false;
-                //    }
-                //    if (VerificarLugar(CeldaActual.NroFila - 1, CeldaActual.NroColumna + 1))
-                //    {
-                //        Matriz[CeldaActual.NroFila - 1, CeldaActual.NroColumna + 1].Legal_Movim = false;
-                //    }
-                //    if (VerificarLugar(CeldaActual.NroFila + 1, CeldaActual.NroColumna - 1))
-                //    {
-                //        Matriz[CeldaActual.NroFila + 1, CeldaActual.NroColumna - 1].Legal_Movim = false;
-                //    }
 
-                //}
-                //else if (Pieza_ is Reina)
-                //{
-                //    //ABAJO 
-                //    for (int i = CeldaActual.NroFila + 1; i < Tam; i++)
-                //    {
-                //        if (VerificarLugar(i, CeldaActual.NroColumna))
-                //        {
-                //            Matriz[i, CeldaActual.NroColumna].Legal_Movim = false;
-                //        }
-                //    }
-                //    //ARRIBA
-                //    for (int i = CeldaActual.NroFila - 1; i >= 0; i--)
-                //    {
-                //        if (VerificarLugar(i, CeldaActual.NroColumna))
-                //        {
-                //            Matriz[i, CeldaActual.NroColumna].Legal_Movim = false;
-                //        }
-
-                //    }
-
-                //    //PARA LA DERECHA
-                //    for (int j = CeldaActual.NroColumna + 1; j < Tam; j++)
-                //    {
-                //        if (VerificarLugar(CeldaActual.NroFila, j))
-                //        {
-                //            Matriz[CeldaActual.NroFila, j].Legal_Movim = false;
-                //        }
-                //    }
-                //    //PARA LA IZQUIERDA
-                //    for (int j = CeldaActual.NroColumna - 1; j >= 0; j--)
-                //    {
-                //        if (VerificarLugar(CeldaActual.NroFila, j))
-                //        {
-                //            Matriz[CeldaActual.NroFila, j].Legal_Movim = false;
-                //        }
-                //    }
-
-                //    //DIAGONAL HACIA ABAJO DERECHA
-                //     r = CeldaActual.NroColumna;
-
-                //    for (int i = CeldaActual.NroFila + 1; i < Tam; i++)
-                //    {
-                //        r++;
-                //        if (VerificarLugar(i, r))
-                //        {
-                //            Matriz[i, r].Legal_Movim = false;
-                //        }
-                //    }
-                //    //DIAGONAL HACIA ARRIBA IZQUIERDA
-                //    r = CeldaActual.NroColumna;
-                //    for (int i = CeldaActual.NroFila - 1; i >= 0; i--)
-                //    {
-                //        r--;
-                //        if (VerificarLugar(i, r))
-                //        {
-                //            Matriz[i, r].Legal_Movim = false;
-                //        }
-                //    }
-                //    //DIAGONAL HACIA ARRIBA DERECHA
-                //    r = CeldaActual.NroColumna;
-                //    for (int i = CeldaActual.NroFila - 1; i >= 0; i--)
-                //    {
-                //        r++;
-                //        if (VerificarLugar(i, r))
-                //        {
-                //            Matriz[i, r].Legal_Movim = false;
-                //        }
-                //    }
-                //    //DIAGONAL HACIA ABAJO IZQUIERDA
-                //    r = CeldaActual.NroColumna;
-                //    for (int i = CeldaActual.NroFila + 1; i < Tam; i++)
-                //    {
-                //        r--;
-                //        if (VerificarLugar(i, r))
-                //        {
-                //            Matriz[i, r].Legal_Movim = false;
-                //        }
-
-                //    }
-                //}
-                //else if (Pieza_ is Torre)
-                //{
-                //    //ABAJO 
-                //    for (int i = CeldaActual.NroFila + 1; i < Tam; i++)
-                //    {
-                //        if (VerificarLugar(i, CeldaActual.NroColumna))
-                //        {
-                //            Matriz[i, CeldaActual.NroColumna].Legal_Movim = false;
-                //        }
-                //    }
-                //    //ARRIBA
-                //    for (int i = CeldaActual.NroFila - 1; i >= 0; i--)
-                //    {
-                //        if (VerificarLugar(i, CeldaActual.NroColumna))
-                //        {
-                //            Matriz[i, CeldaActual.NroColumna].Legal_Movim = false;
-                //        }
-
-                //    }
-
-                //    //PARA LA DERECHA
-                //    for (int j = CeldaActual.NroColumna + 1; j < Tam; j++)
-                //    {
-                //        if (VerificarLugar(CeldaActual.NroFila, j))
-                //        {
-                //            Matriz[CeldaActual.NroFila, j].Legal_Movim = false;
-                //        }
-                //    }
-                //    //PARA LA IZQUIERDA
-                //    for (int j = CeldaActual.NroColumna - 1; j >= 0; j--)
-                //    {
-                //        if (VerificarLugar(CeldaActual.NroFila, j))
-                //        {
-                //            Matriz[CeldaActual.NroFila, j].Legal_Movim = false;
-                //        }
-                //    }
-
-                //}
-                //else if (Pieza_ is Alfil)
-                //{
-                //    //DIAGONAL HACIA ABAJO DERECHA
-                //    r = CeldaActual.NroColumna;
-
-                //    for (int i = CeldaActual.NroFila + 1; i < Tam; i++)
-                //    {
-                //        r++;
-                //        if (VerificarLugar(i, r))
-                //        {
-                //            Matriz[i, r].Legal_Movim = false;
-                //        }
-                //    }
-                //    //DIAGONAL HACIA ARRIBA IZQUIERDA
-                //    r = CeldaActual.NroColumna;
-                //    for (int i = CeldaActual.NroFila - 1; i >= 0; i--)
-                //    {
-                //        r--;
-                //        if (VerificarLugar(i, r))
-                //        {
-                //            Matriz[i, r].Legal_Movim = false;
-                //        }
-                //    }
-                //    //DIAGONAL HACIA ARRIBA DERECHA
-                //    r = CeldaActual.NroColumna;
-                //    for (int i = CeldaActual.NroFila - 1; i >= 0; i--)
-                //    {
-                //        r++;
-                //        if (VerificarLugar(i, r))
-                //        {
-                //            Matriz[i, r].Legal_Movim = false;
-                //        }
-                //    }
-                //    //DIAGONAL HACIA ABAJO IZQUIERDA
-                //    r = CeldaActual.NroColumna;
-                //    for (int i = CeldaActual.NroFila + 1; i < Tam; i++)
-                //    {
-                //        r--;
-                //        if (VerificarLugar(i, r))
-                //        {
-                //            Matriz[i, r].Legal_Movim = false;
-                //        }
-
-                //    }
-                //}
-                //else if (Pieza_ is CaballoAlfil)
-                //{
-                //    //DIAGONAL HACIA ABAJO DERECHA
-                //    r = CeldaActual.NroColumna;
-
-                //    for (int i = CeldaActual.NroFila + 1; i < Tam; i++)
-                //    {
-                //        r++;
-                //        if (VerificarLugar(i, r))
-                //        {
-                //            Matriz[i, r].Legal_Movim = false;
-                //        }
-                //    }
-                //    //DIAGONAL HACIA ARRIBA IZQUIERDA
-                //    r = CeldaActual.NroColumna;
-                //    for (int i = CeldaActual.NroFila - 1; i >= 0; i--)
-                //    {
-                //        r--;
-                //        if (VerificarLugar(i, r))
-                //        {
-                //            Matriz[i, r].Legal_Movim = false;
-                //        }
-                //    }
-                //    //DIAGONAL HACIA ARRIBA DERECHA
-                //    r = CeldaActual.NroColumna;
-                //    for (int i = CeldaActual.NroFila - 1; i >= 0; i--)
-                //    {
-                //        r++;
-                //        if (VerificarLugar(i, r))
-                //        {
-                //            Matriz[i, r].Legal_Movim = false;
-                //        }
-                //    }
-                //    //DIAGONAL HACIA ABAJO IZQUIERDA
-                //    r = CeldaActual.NroColumna;
-                //    for (int i = CeldaActual.NroFila + 1; i < Tam; i++)
-                //    {
-                //        r--;
-                //        if (VerificarLugar(i, r))
-                //        {
-                //            Matriz[i, r].Legal_Movim = false;
-                //        }
-
-                //    }
-                //    if (VerificarLugar(CeldaActual.NroFila - 2, CeldaActual.NroColumna - 1))
-                //    {
-                //        Matriz[CeldaActual.NroFila - 2, CeldaActual.NroColumna - 1].Legal_Movim = false;
-                //    }
-                //    if (VerificarLugar(CeldaActual.NroFila + 2, CeldaActual.NroColumna + 1))
-                //    {
-                //        Matriz[CeldaActual.NroFila + 2, CeldaActual.NroColumna + 1].Legal_Movim = false;
-                //    }
-                //    if (VerificarLugar(CeldaActual.NroFila + 2, CeldaActual.NroColumna - 1))
-                //    {
-                //        Matriz[CeldaActual.NroFila + 2, CeldaActual.NroColumna - 1].Legal_Movim = false;
-                //    }
-                //    if (VerificarLugar(CeldaActual.NroFila - 2, CeldaActual.NroColumna + 1))
-                //    {
-                //        Matriz[CeldaActual.NroFila - 2, CeldaActual.NroColumna + 1].Legal_Movim = false;
-                //    }
-                //    if (VerificarLugar(CeldaActual.NroFila + 1, CeldaActual.NroColumna + 2))
-                //    {
-                //        Matriz[CeldaActual.NroFila + 1, CeldaActual.NroColumna + 2].Legal_Movim = false;
-                //    }
-                //    if (VerificarLugar(CeldaActual.NroFila + 1, CeldaActual.NroColumna - 2))
-                //    {
-                //        Matriz[CeldaActual.NroFila + 1, CeldaActual.NroColumna - 2].Legal_Movim = false;
-                //    }
-                //    if (VerificarLugar(CeldaActual.NroFila - 1, CeldaActual.NroColumna + 2))
-                //    {
-                //        Matriz[CeldaActual.NroFila - 1, CeldaActual.NroColumna + 2].Legal_Movim = false;
-                //    }
-                //    if (VerificarLugar(CeldaActual.NroFila - 1, CeldaActual.NroColumna - 2))
-                //    {
-                //        Matriz[CeldaActual.NroFila - 1, CeldaActual.NroColumna - 2].Legal_Movim = false;
-                //    }
-                //}
 
                 //PARA VOLVER A MARCAR EL TABLERO
                 for (int i = 0; i < Tam; i++)
@@ -1632,13 +1326,12 @@ namespace Colombo_Estrella_TP_LABO_II
                             if (Matriz[i, j].Pieza2 == null)
                             {
                                 MarcarProx_MovLegal(Matriz[i, j], Matriz[i, j].Pieza1);
-                                //ImprimirTablero();
+                                //MiTablero.ImprimirTablero();
                             }
                             else
                             {
                                 MarcarProx_MovLegal(Matriz[i, j], Matriz[i, j].Pieza1);
-                                MarcarProx_MovLegal(Matriz[i, j], Matriz[i, j].Pieza2);
-                                //ImprimirTablero();
+                                //MiTablero.ImprimirTablero();
                             }
 
                         }
@@ -1659,7 +1352,6 @@ namespace Colombo_Estrella_TP_LABO_II
                     Matriz[i, j].Legal_Movim = false;
                     Matriz[i, j].Pieza1 = null;
                     Matriz[i, j].Pieza2 = null;
-                    Matriz[i, j].aux = 0;
                 }
             }
         }

@@ -6,37 +6,30 @@ namespace Colombo_Estrella_TP_LABO_II
 {
     public class Juego
     {
-       public static Tablero MiTablero = new Tablero(8);
+        public Tablero Tablero_ { get; set; }
+        public Tablero MiTablero = new Tablero(8);
 
-        static Caballo Caballo1 = new Caballo();
-        static Caballo Caballo2 = new Caballo();
-        static Torre Torre1 = new Torre();
-        static Torre Torre2 = new Torre();
-        static Alfil Alfil_Blanco = new Alfil(Pieza_Ajedrez.Color_Pieza.BLANCO);
-        static Alfil Alfil_Negro = new Alfil(Pieza_Ajedrez.Color_Pieza.NEGRO);
-        static Reina reina = new Reina();
-        static Rey rey = new Rey();
 
-        List<Pieza_Ajedrez> Lista_Piezas = new List<Pieza_Ajedrez>()
-        {
-           reina,
-           Torre1,
-           Torre2,
-           Alfil_Negro,
-           Caballo1,
-           Caballo2,
-           rey,
-           Alfil_Blanco
-        };
 
-        List<Celda> Lista_Celdas_Ocupadas = new List<Celda>();
+        Caballo Caballo1 = new Caballo();
+        Caballo Caballo2 = new Caballo();
+        Torre Torre1 = new Torre();
+        Torre Torre2 = new Torre();
+        Alfil Alfil_Blanco = new Alfil(Pieza_Ajedrez.Color_Pieza.BLANCO);
+        Alfil Alfil_Negro = new Alfil(Pieza_Ajedrez.Color_Pieza.NEGRO);
+        Reina reina = new Reina();
+        Rey rey = new Rey();
+
+        List<Pieza_Ajedrez> Lista_Piezas = new List<Pieza_Ajedrez>();
+
+        public List<Celda> Lista_Celdas_Ocupadas = new List<Celda>();
 
 
         List<Pieza_Ajedrez> Lista_Piezas_Sacadas = new List<Pieza_Ajedrez>();
 
-        List<Tablero> Soluciones_Encontradas = new List<Tablero>();
+        public List<Celda[,]> Soluciones { get; set; }
 
-        int Cont = 0;
+        public List<Celda[,]> Soluciones_Encontradas = new List<Celda[,]>();
 
         public Juego()
         {
@@ -44,24 +37,36 @@ namespace Colombo_Estrella_TP_LABO_II
             //Crear Tablero
             for (int i = 0; i < 10; i++)
             {
-                Poda();
+
                 //MiTablero.ImprimirTablero();
-                Backtracking1();
-                Soluciones_Encontradas.Add(MiTablero);
-                MiTablero.ImprimirTablero();
                 ReiniciarListas();
                 MiTablero.ReiniciarTablero();
+                Poda();
+                Backtracking1();
+                Soluciones_Encontradas.Add(MiTablero.Matriz);
+                CopiarTablero(i);
+                Console.WriteLine("Solucion {0}", i);
+                MiTablero.ImprimirTablero();
+
+
             }
 
-
-            //for (int i = 0; i < Soluciones_Encontradas.Count; i++)
-            //{
-            //    Console.WriteLine("Solucion {0}", i);
-            //    Soluciones_Encontradas[i].ImprimirTablero();
-            //}
+         
 
 
         }
+
+        private void CopiarTablero(int i)
+        {
+            for (int j = 0; j < MiTablero.Tam; j++)
+            {
+                for (int k = 0; k < MiTablero.Tam; k++)
+                {
+                    Soluciones_Encontradas.ElementAt(i)[j, k] = MiTablero.Matriz[j, k];
+                }
+            }
+        }
+
         public void Poda()
         {
             //METODO DE PODA
@@ -99,7 +104,7 @@ namespace Colombo_Estrella_TP_LABO_II
                 //}
                 i = aux1.Next(3, 8);
                 j = aux2.Next(3, 8);
-
+                // MiTablero.ImprimirTablero();
                 pos = VerificarMejorFicha(MiTablero.Matriz[i, j]);
 
                 if (pos == -1)
@@ -117,10 +122,11 @@ namespace Colombo_Estrella_TP_LABO_II
                                 MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[i, j], Lista_Piezas.ElementAt(pos));
                                 //SE AGREGAN A LA LISTA_PIEZAS SACADAS LAS QUE SE PONEN EN EL TABLERO
                                 Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(pos));
-                                ControlListas();
                                 Lista_Celdas_Ocupadas.Add(MiTablero.Matriz[i, j]);
                                 Lista_Piezas.RemoveAt(pos);
-                                //MiTablero.ImprimirTablero();
+                                ControlListas();
+
+                                // MiTablero.ImprimirTablero();
                             }
                             else
                             {
@@ -140,9 +146,10 @@ namespace Colombo_Estrella_TP_LABO_II
                                     MiTablero.MarcarProx_MovLegal(MiTablero.Matriz[i, j], Lista_Piezas.ElementAt(pos));
                                     //SE AGREGAN A LA LISTA_PIEZAS SACADAS LAS QUE SE PONEN EN EL TABLERO
                                     Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(pos));
-                                    ControlListas();
                                     Lista_Celdas_Ocupadas.Add(MiTablero.Matriz[i, j]);
                                     Lista_Piezas.RemoveAt(pos);
+                                    ControlListas();
+
                                     //MiTablero.ImprimirTablero();
                                 }
 
@@ -156,8 +163,9 @@ namespace Colombo_Estrella_TP_LABO_II
                                 //SE AGREGAN A LA LISTA_PIEZAS SACADAS LAS QUE SE PONEN EN EL TABLERO
                                 Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(pos));
                                 Lista_Celdas_Ocupadas.Add(MiTablero.Matriz[i, j]);
-                                ControlListas();
                                 Lista_Piezas.RemoveAt(pos);
+                                ControlListas();
+
                                 //MiTablero.ImprimirTablero();
                             }
                             else
@@ -179,8 +187,9 @@ namespace Colombo_Estrella_TP_LABO_II
                                     //SE AGREGAN A LA LISTA_PIEZAS SACADAS LAS QUE SE PONEN EN EL TABLERO
                                     Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(pos));
                                     Lista_Celdas_Ocupadas.Add(MiTablero.Matriz[i, j]);
-                                    ControlListas();
                                     Lista_Piezas.RemoveAt(pos);
+                                    ControlListas();
+
                                     //MiTablero.ImprimirTablero();
                                 }
 
@@ -200,8 +209,8 @@ namespace Colombo_Estrella_TP_LABO_II
                             //SE AGREGAN A LA LISTA_PIEZAS SACADAS LAS QUE SE PONEN EN EL TABLERO
                             Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(pos));
                             Lista_Celdas_Ocupadas.Add(MiTablero.Matriz[i, j]);
-                            ControlListas();
                             Lista_Piezas.RemoveAt(pos);
+                            ControlListas();
                             //MiTablero.ImprimirTablero();
                         }
                     }
@@ -211,49 +220,52 @@ namespace Colombo_Estrella_TP_LABO_II
         public void Backtracking1()
         {
             //SI LA SOLUCION YA EXISTE SE TERMINA EL PROGRAMA
-            if (VerificarSolucion() == true)
+            //if (VerificarSolucion() == true)
+            //{
+            //    Cont++;
+            //    return;
+            //}
+            //else
+            //{
+            // MiTablero.ImprimirTablero();
+            int r = 1;
+            int f = 0;
+            //CICLO WHILE PARA SACAR PIEZAS
+            while (VerificarSolucion() == false)
             {
-                Cont++;
-                return;
-            }
-            else
-            {
-                int r = 1;
-                int f = 0;
-                //CICLO WHILE PARA SACAR PIEZAS
-                while (VerificarSolucion() != true)
+                //COMO EN LA PRIMER PARTE NO HAY PIEZAS SACADAS DIRECTAMENTE PASA A LA FUNCION DE COLCARLAS
+                //ES LA FUNCION EncontrarSolucion()
+                if (Lista_Piezas.Count == 0)
                 {
-                    //COMO EN LA PRIMER PARTE NO HAY PIEZAS SACADAS DIRECTAMENTE PASA A LA FUNCION DE COLCARLAS
-                    //ES LA FUNCION EncontrarSolucion()
-                    if (Lista_Piezas_Sacadas.Count != 0)
-                    {
-                        //SE AGREGAN A LA LISTA DE´PIEZAS A LAS QUE PUSE ULTIMAS SI NO HAY SOLUCION AL COLOCAR TODAS
-                        //LA 1ERA VEZ NO SACA NINGUNA, EN LA 2DA SACA UNA SOLAMENTE, Y EN LA 3RA SACA DOS ASI HASTA QUE SACA TODAS 
-                        Lista_Piezas.AddRange(Lista_Piezas_Sacadas.GetRange(Lista_Piezas_Sacadas.Count() - r, r));
-                        ControlListas();
-                        //QUITA DE LA LISTA DE PIEZAS SACADAS (LISTA DE PIEZAS SACADAS ES LA LISTA D EPIEZAS QUE SE VAN COLOCANDO) LAS QUE SE SACAN DEL TABLERO 
-                        f = 0;
-                        while (f != r)
-                        {
-                            MiTablero.DesmarcarLugares(MiTablero.Matriz[Lista_Celdas_Ocupadas.Last().NroFila, Lista_Celdas_Ocupadas.Last().NroColumna], Lista_Celdas_Ocupadas.Last().Pieza1);
-                            Lista_Celdas_Ocupadas.RemoveAt(Lista_Celdas_Ocupadas.Count - 1);
-                            Lista_Piezas_Sacadas.RemoveAt(Lista_Piezas_Sacadas.Count - 1);
-                            f++;
-                        }
-                        r++;
+                    //SE AGREGAN A LA LISTA DE´PIEZAS A LAS QUE PUSE ULTIMAS SI NO HAY SOLUCION AL COLOCAR TODAS
+                    //LA 1ERA VEZ NO SACA NINGUNA, EN LA 2DA SACA UNA SOLAMENTE, Y EN LA 3RA SACA DOS ASI HASTA QUE SACA TODAS 
+                    Lista_Piezas.AddRange(Lista_Piezas_Sacadas.GetRange(Lista_Piezas_Sacadas.Count() - r, r));
 
-                    }
-                    //ESTAS FUNCION COLOCA LAS PIEZAS DISPONIBLES EN EL TABLERO
-                    //MiTablero.ImprimirTablero();
-                    EncontrarSolucion1();
-                    if (r > Lista_Piezas_Sacadas.Count)
+                    //QUITA DE LA LISTA DE PIEZAS SACADAS (LISTA DE PIEZAS SACADAS ES LA LISTA D EPIEZAS QUE SE VAN COLOCANDO) LAS QUE SE SACAN DEL TABLERO 
+                    f = 0;
+                    while (f != r)
                     {
-                        r = 1;
-
+                        MiTablero.DesmarcarLugares(MiTablero.Matriz[Lista_Celdas_Ocupadas.Last().NroFila, Lista_Celdas_Ocupadas.Last().NroColumna], Lista_Celdas_Ocupadas.Last().Pieza1);
+                        Lista_Celdas_Ocupadas.RemoveAt(Lista_Celdas_Ocupadas.Count - 1);
+                        Lista_Piezas_Sacadas.RemoveAt(Lista_Piezas_Sacadas.Count - 1);
+                        // MiTablero.ImprimirTablero();
+                        f++;
                     }
+                    r++;
+                    ControlListas();
+                }
+                //ESTAS FUNCION COLOCA LAS PIEZAS DISPONIBLES EN EL TABLERO
+                //MiTablero.ImprimirTablero();
+                EncontrarSolucion1();
+                if (r > Lista_Piezas_Sacadas.Count)
+                {
+                    r = 1;
+
                 }
             }
+            //}
         }
+
 
         public void Unapieza()
         {
@@ -325,11 +337,24 @@ namespace Colombo_Estrella_TP_LABO_II
             }
             if (contador == 64)
             {
-                for (int i = 0; i < Soluciones_Encontradas.Count; i++)
+                for (int r = 0; r < Soluciones_Encontradas.Count; r++)
                 {
-                    if (Soluciones_Encontradas[i] == MiTablero)
+                    //if (Soluciones_Encontradas[i] == MiTablero.Matriz)
+                    //{
+                    //    MiTablero.ImprimirTablero();
+                    ////ACA SACA TODOS LOS TABLEROS BIEN CAMBIE EL RETURN FALSE POR UN TRUE
+                    //    return true;
+
+                    //}
+                    for (int i = 0; i < MiTablero.Tam; i++)
                     {
-                        return false;
+                        for (int j = 0; j < MiTablero.Tam; j++)
+                        {
+                            if ((Soluciones_Encontradas.ElementAt(r))[i, j] != MiTablero.Matriz[i, j])
+                            {
+                                return false;
+                            }
+                        }
                     }
                 }
 
@@ -348,14 +373,6 @@ namespace Colombo_Estrella_TP_LABO_II
                 return true;
             }
             else if (Lista_Piezas.ElementAt(pos) is Alfil aux2 && aux2.Color_ == Pieza_Ajedrez.Color_Pieza.NEGRO && Celda_Actual.Color == Celda.Color_Celda.NEGRO)
-            {
-                return true;
-            }
-            else if (Lista_Piezas.ElementAt(pos) is CaballoAlfil aux3 && aux3.Color_ == Pieza_Ajedrez.Color_Pieza.BLANCO && Celda_Actual.Color == Celda.Color_Celda.BLANCO)
-            {
-                return true;
-            }
-            else if (Lista_Piezas.ElementAt(pos) is CaballoAlfil aux4 && aux4.Color_ == Pieza_Ajedrez.Color_Pieza.NEGRO && Celda_Actual.Color == Celda.Color_Celda.NEGRO)
             {
                 return true;
             }
@@ -399,8 +416,9 @@ namespace Colombo_Estrella_TP_LABO_II
                 //SE AGREGAN A LA LISTA_PIEZAS SACADAS LAS QUE SE PONEN EN EL TABLERO
                 Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(pos));
                 Lista_Celdas_Ocupadas.Add(MiTablero.Matriz[i, j]);
-                ControlListas();
                 Lista_Piezas.RemoveAt(pos);
+                ControlListas();
+
                 //MiTablero.ImprimirTablero();
                 return true;
             }
@@ -410,8 +428,9 @@ namespace Colombo_Estrella_TP_LABO_II
                 //SE AGREGAN A LA LISTA_PIEZAS SACADAS LAS QUE SE PONEN EN EL TABLERO
                 Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(pos));
                 Lista_Celdas_Ocupadas.Add(MiTablero.Matriz[i, j]);
-                ControlListas();
                 Lista_Piezas.RemoveAt(pos);
+                ControlListas();
+
                 //MiTablero.ImprimirTablero();
                 return true;
             }
@@ -421,8 +440,9 @@ namespace Colombo_Estrella_TP_LABO_II
                 //SE AGREGAN A LA LISTA_PIEZAS SACADAS LAS QUE SE PONEN EN EL TABLERO
                 Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(pos));
                 Lista_Celdas_Ocupadas.Add(MiTablero.Matriz[i, j]);
-                ControlListas();
                 Lista_Piezas.RemoveAt(pos);
+                ControlListas();
+
                 //MiTablero.ImprimirTablero();
                 return true;
             }
@@ -432,8 +452,9 @@ namespace Colombo_Estrella_TP_LABO_II
                 //SE AGREGAN A LA LISTA_PIEZAS SACADAS LAS QUE SE PONEN EN EL TABLERO
                 Lista_Piezas_Sacadas.Add(Lista_Piezas.ElementAt(pos));
                 Lista_Celdas_Ocupadas.Add(MiTablero.Matriz[i, j]);
-                ControlListas();
+
                 Lista_Piezas.RemoveAt(pos);
+                ControlListas();
                 //MiTablero.ImprimirTablero();
                 return true;
             }
@@ -445,85 +466,18 @@ namespace Colombo_Estrella_TP_LABO_II
 
         void ControlListas()
         {
-            int cont_Reina = 0;
-            int cont_Rey = 0;
-            int cont_Torre = 0;
-            int cont_Caballo = 0;
-            int cont_Alfil_B = 0;
-            int cont_Alfil_N = 0;
+           
 
-            for (int i = 0; i < Lista_Piezas.Count; i++)
+            if (Lista_Celdas_Ocupadas.Count == 5 && Lista_Piezas.Count != 0)
             {
-                if (Lista_Piezas[i] is Reina)
-                {
-                    cont_Reina++;
-                }
-                else if (Lista_Piezas[i] is Rey)
-                {
-                    cont_Rey++;
-                }
-                else if (Lista_Piezas[i] is Caballo)
-                {
-                    cont_Caballo++;
-                }
-                else if (Lista_Piezas[i] is Alfil M && M.Color_ == Pieza_Ajedrez.Color_Pieza.BLANCO)
-                {
-                    cont_Alfil_B++;
-                }
-                else if (Lista_Piezas[i] is Alfil T && T.Color_ == Pieza_Ajedrez.Color_Pieza.NEGRO)
-                {
-                    cont_Alfil_N++;
-                }
-                else if (Lista_Piezas[i] is Torre)
-                {
-                    cont_Torre++;
-                }
+                Lista_Piezas.RemoveRange(0, Lista_Piezas.Count);
+            }
+            else if (Lista_Celdas_Ocupadas.Count == 0 && Lista_Piezas_Sacadas.Count != 0)
+            {
+                Lista_Piezas_Sacadas.RemoveRange(0, Lista_Piezas_Sacadas.Count);
             }
 
-            if (cont_Reina > 1 || cont_Alfil_B > 1 || cont_Alfil_N > 1 || cont_Caballo > 2 || cont_Rey > 1 || cont_Torre > 2)
-            {
-                Lista_Piezas.Remove(Lista_Piezas.Last());
-            }
-
-            cont_Reina = 0;
-            cont_Rey = 0;
-            cont_Torre = 0;
-            cont_Caballo = 0;
-            cont_Alfil_B = 0;
-            cont_Alfil_N = 0;
-
-            for (int i = 0; i < Lista_Piezas_Sacadas.Count; i++)
-            {
-                if (Lista_Piezas_Sacadas[i] is Reina)
-                {
-                    cont_Reina++;
-                }
-                else if (Lista_Piezas_Sacadas[i] is Rey)
-                {
-                    cont_Rey++;
-                }
-                else if (Lista_Piezas_Sacadas[i] is Caballo)
-                {
-                    cont_Caballo++;
-                }
-                else if (Lista_Piezas_Sacadas[i] is Alfil M && M.Color_ == Pieza_Ajedrez.Color_Pieza.BLANCO)
-                {
-                    cont_Alfil_B++;
-                }
-                else if (Lista_Piezas_Sacadas[i] is Alfil T && T.Color_ == Pieza_Ajedrez.Color_Pieza.NEGRO)
-                {
-                    cont_Alfil_N++;
-                }
-                else if (Lista_Piezas_Sacadas[i] is Torre)
-                {
-                    cont_Torre++;
-                }
-
-                if (cont_Reina > 1 || cont_Alfil_B > 1 || cont_Alfil_N > 1 || cont_Caballo > 2 || cont_Rey > 1 || cont_Torre > 2)
-                {
-                    Lista_Piezas_Sacadas.Remove(Lista_Piezas.Last());
-                }
-            }
+            
 
         }
 
