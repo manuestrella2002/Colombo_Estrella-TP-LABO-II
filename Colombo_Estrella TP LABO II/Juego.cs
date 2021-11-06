@@ -20,15 +20,17 @@ namespace Colombo_Estrella_TP_LABO_II
         Reina reina = new Reina();
         Rey rey = new Rey();
 
+        //LISTA DE PIEZAS DISPONIBLES PARA COLOCAR EN EL TABLERO
         List<Pieza_Ajedrez> Lista_Piezas = new List<Pieza_Ajedrez>();
-
+        //LISTA DE CELDAS QIUE SE VAN OCUPANDO (MEJORA EL TIEMPO DE EJECUCION PQ SE BUSCA DIRECTAMENTE LA OCUPADA PARA BACKTRAKING)
         public List<Celda> Lista_Celdas_Ocupadas = new List<Celda>();
 
-
+        //LLISTA DE PIEZAS QUE YA SE COLOCARON
         List<Pieza_Ajedrez> Lista_Piezas_Sacadas = new List<Pieza_Ajedrez>();
 
         public List<Celda[,]> Soluciones { get; set; }
 
+        //LISTA DE SOLUCIONE QUE SON VALIDAS SE UTILIZA PARA NO REPETIR SOLUCIONES
         public List<Celda[,]> Soluciones_Encontradas = new List<Celda[,]>();
 
         public Juego()
@@ -38,7 +40,6 @@ namespace Colombo_Estrella_TP_LABO_II
             for (int i = 0; i < 10; i++)
             {
 
-                //MiTablero.ImprimirTablero();
                 ReiniciarListas();
                 MiTablero.ReiniciarTablero();
                 Poda();

@@ -33,5 +33,11 @@ namespace Colombo_Estrella_TP_LABO_II
             form_Tableros.Show();
             
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string Justificacion = " ";
+            MessageBox.Show(Justificacion);
+        }
     }
 }

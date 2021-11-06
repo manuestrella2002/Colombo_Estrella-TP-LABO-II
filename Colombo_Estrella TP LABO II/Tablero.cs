@@ -34,7 +34,7 @@ namespace Colombo_Estrella_TP_LABO_II
             int r;
             //CAMBIA LA POSICION DONDE SE COLOCA LA PIEZA A OCUPADO
             Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Ocupados = true;
-
+            Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Legal_Movim = false;
             if (CeldaActual.Pieza1 != null)
             {
                 Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza1 = Pieza_;
@@ -1309,9 +1309,13 @@ namespace Colombo_Estrella_TP_LABO_II
                             Matriz[CeldaActual.NroFila - 1, CeldaActual.NroColumna - 2].Legal_Movim = false;
                         }
                     }
+
                     Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Ocupados = false;
                     Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza1 = null;
+                    Matriz[CeldaActual.NroFila, CeldaActual.NroColumna].Pieza2 = null;
                     CeldaActual.Pieza1 = null;
+                    CeldaActual.Pieza2 = null;
+                    CeldaActual.Ocupados = false;
                 }
 
 
@@ -1330,6 +1334,7 @@ namespace Colombo_Estrella_TP_LABO_II
                             }
                             else
                             {
+                                Matriz[i, j].Legal_Movim = false;
                                 MarcarProx_MovLegal(Matriz[i, j], Matriz[i, j].Pieza1);
                                 //MiTablero.ImprimirTablero();
                             }
@@ -1897,7 +1902,8 @@ namespace Colombo_Estrella_TP_LABO_II
         //VERIFICA SI LA COORDENADA PASADA EXISTE EN EL TABLERO SINO RETORNA FALSE
         private bool VerificarLugar(int x1, int y2)
         {
-            if (x1 >= 0 && x1 < Tam && y2 >= 0 && y2 < Tam)
+
+            if (x1 >= 0 && x1 < Tam && y2 >= 0 && y2 < Tam && Matriz[x1,y2].Ocupados==false)
             {
                 return true;
             }
