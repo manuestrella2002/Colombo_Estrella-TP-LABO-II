@@ -27,14 +27,18 @@ namespace Colombo_Estrella_TP_LABO_II
         public Label[,] Matriz9 = new Label[8, 8];
         public Label[,] Matriz10 = new Label[8, 8];
 
-        static Juego Juego1 = new Juego();
+        public Juego Juego1;
+        int aux;
+        
         int i = 0;
         
 
-        public Form_Tableros()
+        public Form_Tableros(int nro_sol)
         {
             InitializeComponent();
             label1.Hide();
+            aux = nro_sol;
+            Juego1 = new Juego(nro_sol);
             ArmarMatriz();
             
             if (i>10)
@@ -60,9 +64,9 @@ namespace Colombo_Estrella_TP_LABO_II
             panel10.Height = panel10.Width;
 
             //CICLO FOR PARA RECORRER ARRAY
-            for (int i = 0; i < Juego1.MiTablero.Tam; i++)
+            for (int i = 0; i < 8; i++)
             {
-                for (int j = 0; j < Juego1.MiTablero.Tam; j++)
+                for (int j = 0; j < 8; j++)
                 {
                     //Creo cada boton y le doy forma
                     Matriz1[i, j] = new Label();
@@ -200,49 +204,49 @@ namespace Colombo_Estrella_TP_LABO_II
         private void InicializarMatriz()
         {
             
-            for (int r = 0; r < Juego1.Soluciones_Encontradas.Count; r++)
+            for (int r = 0; r < aux; r++)
             {
 
                 if (r == 0)
                 {
-                    CompletarMatriz(Matriz1, 0);  
+                    CompletarMatriz(Matriz1);  
                 }
                 else if (r==1)
                 {
-                    CompletarMatriz(Matriz2, 1);
+                    CompletarMatriz(Matriz2);
                 }
                 else if (r == 2)
                 {
-                    CompletarMatriz(Matriz3, 2);
+                    CompletarMatriz(Matriz3);
                 }
                 else if (r == 3)
                 {
-                    CompletarMatriz(Matriz4, 3);
+                    CompletarMatriz(Matriz4);
 
                 }
                 else if (r == 4)
                 {
-                    CompletarMatriz(Matriz5, 4);
+                    CompletarMatriz(Matriz5);
                 }
                 else if (r == 5)
                 {
-                    CompletarMatriz(Matriz6, 5);
+                    CompletarMatriz(Matriz6);
                 }
                 else if (r == 6)
                 {
-                    CompletarMatriz(Matriz7, 6);
+                    CompletarMatriz(Matriz7);
                 }
                 else if (r == 7)
                 {
-                    CompletarMatriz(Matriz8, 7);
+                    CompletarMatriz(Matriz8);
                 }
                 else if (r == 8)
                 {
-                    CompletarMatriz(Matriz9, 8);
+                    CompletarMatriz(Matriz9);
                 }
                 else if (r == 9)
                 {
-                    CompletarMatriz(Matriz10,9);
+                    CompletarMatriz(Matriz10);
                 }
 
             }
@@ -250,84 +254,88 @@ namespace Colombo_Estrella_TP_LABO_II
 
         }
 
-        private void CompletarMatriz(Label[,] Matriz_, int pos)
+        private void CompletarMatriz(Label[,] Matriz_)
         {
-            for (int j = 0; j < 8; j++)
+            for (int i = 0; i < aux; i++)
             {
-                for (int k = 0; k < 8; k++)
+
+                for (int j = 0; j < 8; j++)
                 {
-                    if (Juego1.Soluciones_Encontradas.ElementAt(pos)[j, k].Ocupados == true)
+                    for (int k = 0; k < 8; k++)
                     {
-                        if (Juego1.Soluciones_Encontradas.ElementAt(pos)[j, k].Pieza2 == null)
+                        if (Juego1.Sol_Matrices[i,j,k].Ocupados == true)
                         {
-                            if (Juego1.Soluciones_Encontradas.ElementAt(pos)[j, k].Pieza1 is Caballo)
+                            if (Juego1.Sol_Matrices[i, j, k].Pieza2 == null)
                             {
-                                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\Caballo.jpg");
-                                Matriz_[j, k].BackgroundImage = Image.FromFile(path);
-                                Matriz_[j, k].BackgroundImageLayout = ImageLayout.Zoom;
+                                if (Juego1.Sol_Matrices[i, j, k].Pieza1 is Caballo)
+                                {
+                                    string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\Caballo.jpg");
+                                    Matriz_[j, k].BackgroundImage = Image.FromFile(path);
+                                    Matriz_[j, k].BackgroundImageLayout = ImageLayout.Zoom;
+                                }
+                                else if (Juego1.Sol_Matrices[i, j, k].Pieza1 is Rey)
+                                {
+                                    string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\Rey.jpg");
+                                    Matriz_[j, k].BackgroundImage = Image.FromFile(path);
+                                    Matriz_[j, k].BackgroundImageLayout = ImageLayout.Zoom;
+                                }
+                                else if (Juego1.Sol_Matrices[i, j, k].Pieza1 is Alfil)
+                                {
+                                    string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\Alfil.jpg");
+                                    Matriz_[j, k].BackgroundImage = Image.FromFile(path);
+                                    Matriz_[j, k].BackgroundImageLayout = ImageLayout.Zoom;
+                                }
+                                else if (Juego1.Sol_Matrices[i, j, k].Pieza1 is Reina)
+                                {
+                                    string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\Reina.jpg");
+                                    Matriz_[j, k].BackgroundImage = Image.FromFile(path);
+                                    Matriz_[j, k].BackgroundImageLayout = ImageLayout.Zoom;
+                                }
+                                else if (Juego1.Sol_Matrices[i, j, k].Pieza1 is Torre)
+                                {
+                                    string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\Torre.jpg");
+                                    Matriz_[j, k].BackgroundImage = Image.FromFile(path);
+                                    Matriz_[j, k].BackgroundImageLayout = ImageLayout.Zoom;
+                                }
                             }
-                            else if (Juego1.Soluciones_Encontradas.ElementAt(pos)[j, k].Pieza1 is Rey)
+                            else
                             {
-                                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\Rey.jpg");
-                                Matriz_[j, k].BackgroundImage = Image.FromFile(path);
-                                Matriz_[j, k].BackgroundImageLayout = ImageLayout.Zoom;
-                            }
-                            else if (Juego1.Soluciones_Encontradas.ElementAt(pos)[j, k].Pieza1 is Alfil)
-                            {
-                                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\Alfil.jpg");
-                                Matriz_[j, k].BackgroundImage = Image.FromFile(path);
-                                Matriz_[j, k].BackgroundImageLayout = ImageLayout.Zoom;
-                            }
-                            else if (Juego1.Soluciones_Encontradas.ElementAt(pos)[j, k].Pieza1 is Reina)
-                            {
-                                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\Reina.jpg");
-                                Matriz_[j, k].BackgroundImage = Image.FromFile(path);
-                                Matriz_[j, k].BackgroundImageLayout = ImageLayout.Zoom;
-                            }
-                            else if (Juego1.Soluciones_Encontradas.ElementAt(pos)[j, k].Pieza1 is Torre)
-                            {
-                                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\Torre.jpg");
-                                Matriz_[j, k].BackgroundImage = Image.FromFile(path);
-                                Matriz_[j, k].BackgroundImageLayout = ImageLayout.Zoom;
+                                if (Juego1.Sol_Matrices[i, j, k].Pieza1 is Caballo && Juego1.Sol_Matrices[i, j, k].Pieza2 is Alfil)
+                                {
+                                    string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\CaballoAlfil.jpg");
+                                    Matriz_[j, k].BackgroundImage = Image.FromFile(path);
+                                    Matriz_[j, k].BackgroundImageLayout = ImageLayout.Zoom;
+                                }
+                                else if (Juego1.Sol_Matrices[i, j, k].Pieza1 is Alfil && Juego1.Sol_Matrices[i, j, k].Pieza2 is Caballo)
+                                {
+                                    string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\CaballoAlfil.jpg");
+                                    Matriz_[j, k].BackgroundImage = Image.FromFile(path);
+                                    Matriz_[j, k].BackgroundImageLayout = ImageLayout.Zoom;
+                                }
+                                else if (Juego1.Sol_Matrices[i, j, k].Pieza1 is Rey)
+                                {
+                                    string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\Rey.jpg");
+                                    Matriz_[j, k].BackgroundImage = Image.FromFile(path);
+                                    Matriz_[j, k].BackgroundImageLayout = ImageLayout.Zoom;
+                                }
+                                else if (Juego1.Sol_Matrices[i, j, k].Pieza1 is Reina)
+                                {
+                                    string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\Reina.jpg");
+                                    Matriz_[j, k].BackgroundImage = Image.FromFile(path);
+                                    Matriz_[j, k].BackgroundImageLayout = ImageLayout.Zoom;
+                                }
+                                else if (Juego1.Sol_Matrices[i, j, k].Pieza1 is Torre)
+                                {
+                                    string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\Torre.jpg");
+                                    Matriz_[j, k].BackgroundImage = Image.FromFile(path);
+                                    Matriz_[j, k].BackgroundImageLayout = ImageLayout.Zoom;
+                                }
                             }
                         }
-                        else
+                        else if (Juego1.Sol_Matrices[i, j, k].Legal_Movim == true)
                         {
-                            if (Juego1.Soluciones_Encontradas.ElementAt(pos)[j, k].Pieza1 is Caballo && Juego1.Soluciones_Encontradas.ElementAt(pos)[j, k].Pieza2 is Alfil)
-                            {
-                                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\CaballoAlfil.jpg");
-                                Matriz_[j, k].BackgroundImage = Image.FromFile(path);
-                                Matriz_[j, k].BackgroundImageLayout = ImageLayout.Zoom;
-                            }
-                            else if (Juego1.Soluciones_Encontradas.ElementAt(pos)[j, k].Pieza1 is Alfil && Juego1.Soluciones_Encontradas.ElementAt(pos)[j, k].Pieza2 is Caballo)
-                            {
-                                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\CaballoAlfil.jpg");
-                                Matriz_[j, k].BackgroundImage = Image.FromFile(path);
-                                Matriz_[j, k].BackgroundImageLayout = ImageLayout.Zoom;
-                            }
-                            else if (Juego1.Soluciones_Encontradas.ElementAt(pos)[j, k].Pieza1 is Rey)
-                            {
-                                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\Rey.jpg");
-                                Matriz_[j, k].BackgroundImage = Image.FromFile(path);
-                                Matriz_[j, k].BackgroundImageLayout = ImageLayout.Zoom;
-                            }
-                            else if (Juego1.Soluciones_Encontradas.ElementAt(pos)[j, k].Pieza1 is Reina)
-                            {
-                                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\Reina.jpg");
-                                Matriz_[j, k].BackgroundImage = Image.FromFile(path);
-                                Matriz_[j, k].BackgroundImageLayout = ImageLayout.Zoom;
-                            }
-                            else if (Juego1.Soluciones_Encontradas.ElementAt(pos)[j, k].Pieza1 is Torre)
-                            {
-                                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\Torre.jpg");
-                                Matriz_[j, k].BackgroundImage = Image.FromFile(path);
-                                Matriz_[j, k].BackgroundImageLayout = ImageLayout.Zoom;
-                            }
+                            Matriz_[k, j].BackColor = Color.FromArgb(0, 102, 255); //AZUL ATAQUE
                         }
-                    }
-                    else if (Juego1.Soluciones_Encontradas.ElementAt(pos)[j, k].Legal_Movim == true)
-                    {
-                        Matriz_[k, j].BackColor = Color.FromArgb(0, 102, 255); //AZUL ATAQUE
                     }
                 }
             }

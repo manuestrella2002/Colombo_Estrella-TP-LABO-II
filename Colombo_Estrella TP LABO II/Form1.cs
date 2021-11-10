@@ -29,7 +29,11 @@ namespace Colombo_Estrella_TP_LABO_II
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form_Tableros form_Tableros = new Form_Tableros();
+            if (nro_soluciones.Text==null)
+            {
+                nro_soluciones.Text = "10";
+            }
+            Form_Tableros form_Tableros = new Form_Tableros(int.Parse(nro_soluciones.Text));
             form_Tableros.Show();
             
         }
@@ -38,6 +42,11 @@ namespace Colombo_Estrella_TP_LABO_II
         {
             string Justificacion = " ";
             MessageBox.Show(Justificacion);
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

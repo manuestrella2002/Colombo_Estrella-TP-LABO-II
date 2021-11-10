@@ -9,6 +9,7 @@ namespace Colombo_Estrella_TP_LABO_II
         public Tablero Tablero_ { get; set; }
         public Tablero MiTablero = new Tablero(8);
 
+        static int cont1=0;
 
 
         Caballo Caballo1 = new Caballo();
@@ -33,11 +34,13 @@ namespace Colombo_Estrella_TP_LABO_II
         //LISTA DE SOLUCIONE QUE SON VALIDAS SE UTILIZA PARA NO REPETIR SOLUCIONES
         public List<Celda[,]> Soluciones_Encontradas = new List<Celda[,]>();
 
-        public Juego()
+        public Celda[,,] Sol_Matrices = new Celda[10, 8, 8];
+
+        public Juego(int nro_soluciones)
         {
             //ENCUENTRA SOLO UNA SOLUCION
             //Crear Tablero
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < nro_soluciones; i++)
             {
 
                 ReiniciarListas();
@@ -306,7 +309,16 @@ namespace Colombo_Estrella_TP_LABO_II
                         }
                     }
                 }
-
+                
+                    for (int j = 0; j < MiTablero.Tam; j++)
+                    {
+                        for (int r = 0; r < MiTablero.Tam; r++)
+                        {
+                         Sol_Matrices[cont1, j, r] = MiTablero.Matriz[j, r];
+                        }
+                    }
+                
+                cont1++;
                 return true;
             }
             else
