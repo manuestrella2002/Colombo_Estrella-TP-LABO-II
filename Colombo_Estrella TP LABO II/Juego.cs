@@ -309,14 +309,15 @@ namespace Colombo_Estrella_TP_LABO_II
                         }
                     }
                 }
-                
-                    for (int j = 0; j < MiTablero.Tam; j++)
+
+                for (int j = 0; j < MiTablero.Tam; j++)
+                {
+                    for (int r = 0; r < MiTablero.Tam; r++)
                     {
-                        for (int r = 0; r < MiTablero.Tam; r++)
-                        {
-                         Sol_Matrices[cont1, j, r] = MiTablero.Matriz[j, r];
-                        }
+                        Sol_Matrices[cont1, j, r] = new Celda(j,r);
                     }
+                }
+                CopiarTablero_Matriz();
                 
                 cont1++;
                 return true;
@@ -432,6 +433,84 @@ namespace Colombo_Estrella_TP_LABO_II
             Lista_Piezas.Add(Alfil_Negro);
             Lista_Piezas.Add(Torre1);
             Lista_Piezas.Add(Torre2);
+        }
+
+        void CopiarTablero_Matriz()
+        {
+            for (int i = 0; i < MiTablero.Tam; i++)
+            {
+                for (int j = 0; j < MiTablero.Tam; j++)
+                {
+                    if (MiTablero.Matriz[i, j].Ocupados == true)
+                    {
+
+                        if (MiTablero.Matriz[i, j].Pieza2 != null)
+                        {
+                            if (MiTablero.Matriz[i, j].Pieza2 is Alfil aux && aux.Color_ == Pieza_Ajedrez.Color_Pieza.BLANCO)
+                            {
+                                Sol_Matrices[cont1, i, j].Pieza2 = Alfil_Blanco;
+                            }
+                            else if (MiTablero.Matriz[i, j].Pieza2 is Alfil aux1 && aux1.Color_ == Pieza_Ajedrez.Color_Pieza.NEGRO)
+                            {
+                                Sol_Matrices[cont1, i, j].Pieza2 = Alfil_Negro;
+                            }
+                            else if (MiTablero.Matriz[i, j].Pieza2 is Caballo)
+                            {
+                                Sol_Matrices[cont1, i, j].Pieza2 = Caballo1;
+                            }
+
+                            if (MiTablero.Matriz[i, j].Pieza1 is Alfil aux2 && aux2.Color_ == Pieza_Ajedrez.Color_Pieza.BLANCO)
+                            {
+                                Sol_Matrices[cont1, i, j].Pieza1 = Alfil_Blanco;
+                            }
+                            else if (MiTablero.Matriz[i, j].Pieza1 is Alfil aux3 && aux3.Color_ == Pieza_Ajedrez.Color_Pieza.NEGRO)
+                            {
+                                Sol_Matrices[cont1, i, j].Pieza1 = Alfil_Negro;
+                            }
+                            else if (MiTablero.Matriz[i, j].Pieza1 is Caballo)
+                            {
+                                Sol_Matrices[cont1, i, j].Pieza1 = Caballo1;
+                            }
+                            Sol_Matrices[cont1, i, j].Ocupados = true;
+                        }
+                        else
+                        {
+                            if (MiTablero.Matriz[i, j].Pieza1 is Torre)
+                            {
+                                Sol_Matrices[cont1, i, j].Pieza1 = Torre1;
+                            }
+                            else if (MiTablero.Matriz[i, j].Pieza1 is Rey)
+                            {
+                                Sol_Matrices[cont1, i, j].Pieza1 = rey;
+                            }
+                            else if (MiTablero.Matriz[i, j].Pieza1 is Reina)
+                            {
+                                Sol_Matrices[cont1, i, j].Pieza1 = reina;
+                            }
+                            else if (MiTablero.Matriz[i, j].Pieza1 is Caballo)
+                            {
+                                Sol_Matrices[cont1, i, j].Pieza1 = Caballo1;
+                            }
+                            else if (MiTablero.Matriz[i, j].Pieza1 is Alfil aux2 && aux2.Color_ == Pieza_Ajedrez.Color_Pieza.BLANCO)
+                            {
+                                Sol_Matrices[cont1, i, j].Pieza1 = Alfil_Blanco;
+                            }
+                            else if (MiTablero.Matriz[i, j].Pieza1 is Alfil aux3 && aux3.Color_ == Pieza_Ajedrez.Color_Pieza.NEGRO)
+                            {
+                                Sol_Matrices[cont1, i, j].Pieza1 = Alfil_Negro;
+                            }
+                            Sol_Matrices[cont1, i, j].Ocupados = true;
+
+                        }
+                    }
+                    else if (MiTablero.Matriz[i,j].Legal_Movim==true)
+                    {
+                        Sol_Matrices[cont1, i, j].Legal_Movim = true;
+                        Sol_Matrices[cont1, i, j].Ocupados = false;
+                    }
+                }
+                
+            }
         }
     }
 }
