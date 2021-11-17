@@ -50,6 +50,19 @@ namespace Colombo_Estrella_TP_LABO_II
             Matriz8 = new Label[8, 8];
             Matriz9 = new Label[8, 8];
             CompletarMatrices();
+            if (contador==0)
+            {
+                label1.Text = "Tablero" + (contador + 1).ToString();
+                label1.Show();
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
+                        panel1.Controls.Add(Matriz[i, j]);
+                    }
+                }
+                contador++;
+            }
         }
 
         private void CompletarMatrices()
@@ -949,222 +962,11 @@ namespace Colombo_Estrella_TP_LABO_II
         }
     
 
-
-
-
-        //private void ArmarTablero()
-        //{
-        //    int labelsize = panel1.Width / Juego1.MiTablero.Tam;
-
-        //    //EL PANEL TIENE QUE SER UN CUADRADO ENTONCES LE DOY FORMA
-        //    panel1.Height = panel1.Width;
-
-        //    Label[,] Matriz=new Label[8,8];
-            
-        //    //CICLO FOR PARA RECORRER ARRAY
-        //    for (int i = 0; i < 8; i++)
-        //    {
-        //        for (int j = 0; j < 8; j++)
-        //        {
-        //            //Creo cada boton y le doy forma
-                    
-
-        //            //COLOCO CADA BOTON EN UNA POSICION ESPECIFICA
-        //            Matriz[i, j].Location = new Point(j * labelsize, i * labelsize);
-                   
-
-        //            Matriz[i, j].BorderStyle = BorderStyle.FixedSingle;
-            
-        //            //AGREGO LOS BOTONES AL PANEL
-        //            panel1.Controls.Add(Matriz[i,j]);
-
-        //            //LE DOY COLOR A LOS BOTONES 
-        //            if (i % 2 == 0 && j % 2 == 0)
-        //            {
-        //                Matriz[i, j].BackColor = Color.FromArgb(217, 217, 217);//BLANCO
-        //            }
-        //            if (i % 2 == 0 && j % 2 != 0)
-        //            {
-        //                Matriz[i, j].BackColor = Color.FromArgb(146, 146, 146);//GRIS
-        //            }
-        //            if (i % 2 != 0 && j % 2 == 0)
-        //            {
-        //                Matriz[i, j].BackColor = Color.FromArgb(146, 146, 146);//GRIS                     
-        //            }
-        //            if (i % 2 != 0 && j % 2 != 0)
-        //            {
-        //                Matriz[i, j].BackColor = Color.FromArgb(217, 217, 217);//BLANCO
-        //            }
-
-        //        }
-        //    }
-        //}
-
-        //private void CompletarMatriz()
-        //{
-        //    if (contador!=0)
-        //    {
-        //        for (int i = 0; i < 8; i++)
-        //        {
-        //            for (int j = 0; j < 8; j++)
-        //            {
-        //                panel1.Controls.Remove(Matriz[i, j]);
-        //            }
-        //        }
-        //    }
-        //    panel1.Refresh();
-        //    int labelsize = panel1.Width / Juego1.MiTablero.Tam;
-
-        //    //EL PANEL TIENE QUE SER UN CUADRADO ENTONCES LE DOY FORMA
-        //    panel1.Height = panel1.Width;
-
-        //    //Label[,] Matriz = new Label[8, 8];
-
-        //    //CICLO FOR PARA RECORRER ARRAY
-        //    for (int i = 0; i < 8; i++)
-        //    {
-        //        for (int j = 0; j < 8; j++)
-        //        {
-        //            //Creo cada boton y le doy forma
-
-        //            Matriz[i, j] = new Label();
-        //            //COLOCO CADA BOTON EN UNA POSICION ESPECIFICA
-        //            Matriz[i, j].Height = labelsize;
-        //            Matriz[i, j].Width = labelsize;
-        //            Matriz[i, j].Location = new Point(j * labelsize, i * labelsize);
-
-        //            Matriz[i, j].BorderStyle = BorderStyle.FixedSingle;
-
-        //            //AGREGO LOS BOTONES AL PANEL
-        //            panel1.Controls.Add(Matriz[i, j]);
-
-        //            //LE DOY COLOR A LOS BOTONES 
-        //            if (i % 2 == 0 && j % 2 == 0)
-        //            {
-        //                Matriz[i, j].BackColor = Color.FromArgb(217, 217, 217);//BLANCO
-        //            }
-        //            if (i % 2 == 0 && j % 2 != 0)
-        //            {
-        //                Matriz[i, j].BackColor = Color.FromArgb(146, 146, 146);//GRIS
-        //            }
-        //            if (i % 2 != 0 && j % 2 == 0)
-        //            {
-        //                Matriz[i, j].BackColor = Color.FromArgb(146, 146, 146);//GRIS                     
-        //            }
-        //            if (i % 2 != 0 && j % 2 != 0)
-        //            {
-        //                Matriz[i, j].BackColor = Color.FromArgb(217, 217, 217);//BLANCO
-        //            }
-
-        //        }
-        //    }
-
-            
-        //   for (int j = 0; j < 8; j++)
-        //        {
-        //            for (int k = 0; k < 8; k++)
-        //            {
-        //                if (Juego1.Sol_Matrices[contador,j,k].Ocupados == true)
-        //                {
-        //                    if (Juego1.Sol_Matrices[contador, j, k].Pieza2 == null)
-        //                    {
-        //                        if (Juego1.Sol_Matrices[contador, j, k].Pieza1 is Caballo)
-        //                        {
-        //                            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\Caballo.jpg");
-        //                            Matriz[j, k].BackgroundImage = Image.FromFile(path);
-        //                            Matriz[j, k].BackgroundImageLayout = ImageLayout.Zoom;
-        //                        }
-        //                        else if (Juego1.Sol_Matrices[contador, j, k].Pieza1 is Rey)
-        //                        {
-        //                            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\Rey.jpg");
-        //                            Matriz[j, k].BackgroundImage = Image.FromFile(path);
-        //                            Matriz[j, k].BackgroundImageLayout = ImageLayout.Zoom;
-        //                        }
-        //                        else if (Juego1.Sol_Matrices[contador, j, k].Pieza1 is Alfil)
-        //                        {
-        //                            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\Alfil.jpg");
-        //                            Matriz[j, k].BackgroundImage = Image.FromFile(path);
-        //                            Matriz[j, k].BackgroundImageLayout = ImageLayout.Zoom;
-        //                        }
-        //                        else if (Juego1.Sol_Matrices[contador, j, k].Pieza1 is Reina)
-        //                        {
-        //                            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\Reina.jpg");
-        //                            Matriz[j, k].BackgroundImage = Image.FromFile(path);
-        //                            Matriz[j, k].BackgroundImageLayout = ImageLayout.Zoom;
-        //                        }
-        //                        else if (Juego1.Sol_Matrices[contador, j, k].Pieza1 is Torre)
-        //                        {
-        //                            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\Torre.jpg");
-        //                            Matriz[j, k].BackgroundImage = Image.FromFile(path);
-        //                            Matriz[j, k].BackgroundImageLayout = ImageLayout.Zoom;
-        //                        }
-        //                    }
-        //                    else
-        //                    {
-        //                        if (Juego1.Sol_Matrices[contador, j, k].Pieza1 is Caballo && Juego1.Sol_Matrices[contador, j, k].Pieza2 is Alfil)
-        //                        {
-        //                            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\CaballoAlfil.jpg");
-        //                            Matriz[j, k].BackgroundImage = Image.FromFile(path);
-        //                            Matriz[j, k].BackgroundImageLayout = ImageLayout.Zoom;
-        //                        }
-        //                        else if (Juego1.Sol_Matrices[contador, j, k].Pieza1 is Alfil && Juego1.Sol_Matrices[contador, j, k].Pieza2 is Caballo)
-        //                        {
-        //                            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\CaballoAlfil.jpg");
-        //                            Matriz[j, k].BackgroundImage = Image.FromFile(path);
-        //                            Matriz[j, k].BackgroundImageLayout = ImageLayout.Zoom;
-        //                        }
-        //                        else if (Juego1.Sol_Matrices[contador, j, k].Pieza1 is Rey)
-        //                        {
-        //                            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\Rey.jpg");
-        //                            Matriz[j, k].BackgroundImage = Image.FromFile(path);
-        //                            Matriz[j, k].BackgroundImageLayout = ImageLayout.Zoom;
-        //                        }
-        //                        else if (Juego1.Sol_Matrices[contador, j, k].Pieza1 is Reina)
-        //                        {
-        //                            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\Reina.jpg");
-        //                            Matriz[j, k].BackgroundImage = Image.FromFile(path);
-        //                            Matriz[j, k].BackgroundImageLayout = ImageLayout.Zoom;
-        //                        }
-        //                        else if (Juego1.Sol_Matrices[contador, j, k].Pieza1 is Torre)
-        //                        {
-        //                            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Iconos Ajedrez\Torre.jpg");
-        //                            Matriz[j, k].BackgroundImage = Image.FromFile(path);
-        //                            Matriz[j, k].BackgroundImageLayout = ImageLayout.Zoom;
-        //                        }
-        //                    }
-        //                }
-        //                else /*if (Juego1.Sol_Matrices[contador, j, k].Legal_Movim == true)*/
-        //                {
-        //                    Matriz[k, j].BackColor = Color.FromArgb(0, 102, 255); //AZUL ATAQUE
-        //                }
-        //            }
-        //        }
-            
-
-
-        //    for (int i = 0; i < 8; i++)
-        //    {
-        //        for (int j = 0; j < 8; j++)
-        //        {
-        //            if (contador!=0)
-        //            {
-        //                Matriz[i, j].Refresh();
-        //                panel1.Refresh();
-        //            }
-        //            Matriz[i, j] = null;
-                    
-        //        }
-        //    }
-        //}
-
-    
-
         private void button1_Click(object sender, EventArgs e)
         {
             label1.Text = "Tablero" + (contador+1).ToString();
             label1.Show();
             panel1.Controls.Clear();
-            //CompletarMatriz();
             if (contador==0)
             {
                 for (int i = 0; i < 8; i++)
@@ -1275,7 +1077,7 @@ namespace Colombo_Estrella_TP_LABO_II
                 }
                 contador++;
             }
-            //contador++;
+            
             if (contador>=aux)
             {
                 String AUX = aux.ToString();
@@ -1292,10 +1094,10 @@ namespace Colombo_Estrella_TP_LABO_II
 
         private void button2_Click(object sender, EventArgs e)
         {
-            label1.Text = "Tablero" + (contador).ToString();
+            label1.Text = "Tablero" + (contador+1).ToString();
             label1.Show();
             panel1.Controls.Clear();
-            //CompletarMatriz();
+            
             if (contador == 0)
             {
                 for (int i = 0; i < 8; i++)
@@ -1406,8 +1208,7 @@ namespace Colombo_Estrella_TP_LABO_II
                 }
                contador--;
             }
-            //contador--;
-            //CompletarMatriz();
+            
             if (contador < 0)
             {
                 MessageBox.Show("Se encuentra en el primer tablero");
