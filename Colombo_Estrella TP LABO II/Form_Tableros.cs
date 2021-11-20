@@ -52,7 +52,7 @@ namespace Colombo_Estrella_TP_LABO_II
             CompletarMatrices();
             if (contador==0)
             {
-                label1.Text = "Tablero" + (contador + 1).ToString();
+                label1.Text = "Tablero"+" " + (contador + 1).ToString();
                 label1.Show();
                 for (int i = 0; i < 8; i++)
                 {
@@ -964,7 +964,7 @@ namespace Colombo_Estrella_TP_LABO_II
 
         private void button1_Click(object sender, EventArgs e)
         {
-            label1.Text = "Tablero" + (contador+1).ToString();
+            label1.Text = "Tablero " + (contador+1).ToString();
             label1.Show();
             panel1.Controls.Clear();
             if (contador==0)
@@ -1080,10 +1080,9 @@ namespace Colombo_Estrella_TP_LABO_II
             
             if (contador>=aux)
             {
-                String AUX = aux.ToString();
-                MessageBox.Show("Solo creo "+AUX+ " soluciones","ERROR");
+
                 button1.Enabled = false;
-                contador = aux;
+                contador = aux-1;
             }
             else
             {
@@ -1094,7 +1093,7 @@ namespace Colombo_Estrella_TP_LABO_II
 
         private void button2_Click(object sender, EventArgs e)
         {
-            label1.Text = "Tablero" + (contador+1).ToString();
+            label1.Text = "Tablero " + (contador+1).ToString();
             label1.Show();
             panel1.Controls.Clear();
             
@@ -1211,7 +1210,6 @@ namespace Colombo_Estrella_TP_LABO_II
             
             if (contador < 0)
             {
-                MessageBox.Show("Se encuentra en el primer tablero");
                 button2.Enabled = false;
                 contador = 0;
             }

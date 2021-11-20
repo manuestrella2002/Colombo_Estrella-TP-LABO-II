@@ -19,7 +19,7 @@ namespace Colombo_Estrella_TP_LABO_II
         public Form1()
         {
             InitializeComponent();
-
+            nro_soluciones.Text = "10";
             string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Imagenes\Ajedrez.jpg");
 
             System.Drawing.Image img = System.Drawing.Image.FromFile(path);
