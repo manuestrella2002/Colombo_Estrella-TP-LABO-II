@@ -35,10 +35,16 @@ namespace Colombo_Estrella_TP_LABO_II
         public Form_Tableros(int nro_sol)
         {
             InitializeComponent();
+            
+            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Imagenes\FormTableroImg.jpg");
+            this.BackgroundImage = Image.FromFile(path);
+
             label1.Hide();
             aux = nro_sol;
+            
             Juego1 = new Juego(nro_sol);
             contador = 0;
+            
             Matriz = new Label[8, 8];
             Matriz1 = new Label[8, 8];
             Matriz2 = new Label[8, 8];
@@ -49,7 +55,9 @@ namespace Colombo_Estrella_TP_LABO_II
             Matriz7 = new Label[8, 8];
             Matriz8 = new Label[8, 8];
             Matriz9 = new Label[8, 8];
+            
             CompletarMatrices();
+            
             if (contador==0)
             {
                 label1.Text = "Tablero"+" " + (contador + 1).ToString();
