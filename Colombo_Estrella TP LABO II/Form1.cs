@@ -55,8 +55,10 @@ namespace Colombo_Estrella_TP_LABO_II
                 "Habiendo analizado todo el codigo, teniendo en cuenta que los ciclos for utilizados para recorrer las distintas matrices tienen un tiempo de ejecucion constante al igual" +
                 " que el uso de funciones de librerias, podemos estimar que el algoritmo tiene como cota inferior una camplejidad lineal porque está aumenta con respecto a la cantidad de soluciones a encontrar.\n." +
                 "\t \u03A9(n)=n, donde n es el numero de soluciones a encontrar.";
-            string justificacion3 = "\n\n\n\tDescripcion de Poda:" +
-                "\n";
+            string justificacion3 = "\n\n\n\tDescripcion de Poda:\n"
+                + "La poda que se realizo en este trabajo fue ubicar las piezas de las torres, una en la posicion [0,0] "
+                +"para que ocupe toda una fila y una columna, lo mismo con la otra torre en [1,1] y ocupar toda la fila y columna correspondiente, "
+                + "tambien se coloco la reina en [2,2] y se resta otra fila y columna de las posibilidades a ocupar. De esta forma se achica el tablero para que a la hora de colocar las demas piezas se pueda cubrir en su totalidad. ";
             MessageBox.Show(Justificacion+Justificacion2+justificacion3,"Analisis de Algoritmo");
         }
 
