@@ -9,7 +9,7 @@ namespace Colombo_Estrella_TP_LABO_II
         public Tablero Tablero_ { get; set; }
         public Tablero MiTablero = new Tablero(8);
 
-        static int cont1=0;
+         int cont1=0;
 
 
         Caballo Caballo1 = new Caballo();
@@ -243,6 +243,7 @@ namespace Colombo_Estrella_TP_LABO_II
                         f++;
                     }
                     r++;
+
                     
                     ControlListas();
                 }
