@@ -1,2 +1,3 @@
 # Colombo_Estrella-TP-LABO-II
-Tuvimos problemas con mostrar los tableros en el form, siempre muestra el mismo aunque las soluciones son distintas y validas.
+En los archivos de arriba hay un archivo .rar que se llama "Imagenes.rar", dentro se encuentran dos carpetas con imagenes que se usan en el programa.
+Insertar ambas carpetas en: "Colombo_Estrella TP LABO II\Colombo_Estrella TP LABO II\bin\x64\Debug".
